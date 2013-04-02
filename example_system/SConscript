@@ -1,0 +1,4 @@
+Import('env')
+import scons_tools.examples
+
+env= env.IMPSystem()
