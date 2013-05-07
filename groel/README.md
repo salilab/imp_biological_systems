@@ -5,13 +5,13 @@ A full description of the scripts can be found in
 
 ## Steps
 Modeling of the bacterial molecular chaperone GroEL
-1. Template identification: `$IMP/tools/imppy.sh python scripts/script1_build_profile.py`
-1. Template(s) selection by sequence: `$IMP/tools/imppy.sh python scripts/script2_compare_templates.py`
-1. Density map segmentation: `$IMP/tools/imppy.sh python scripts/script3_density_segmentation.py`
-1. Template selection by fitting to a density map: `$IMP/tools/imppy.sh python scripts/script4_score_templates_by_cc.py`
-1. Template alignment: `$IMP/tools/imppy.sh python scripts/script5_template_alignment.py`
-1. Model building and assessment: `$IMP/tools/imppy.sh python scripts/script6_model_building_and_assessment.py` and `$IMP/tools/imppy.sh python scripts/script7_pairwise_rmsd.py`
-1. Multiple fitting into a density map: `$IMP/tools/imppy.sh python scripts/script8_split_density.py` and `$IMP/tools/imppy.sh python scripts/script9_symmetric_multiple_fitting.py`
+-# Template identification: `$IMP/tools/imppy.sh python scripts/script1_build_profile.py`
+-# Template(s) selection by sequence: `$IMP/tools/imppy.sh python scripts/script2_compare_templates.py`
+-# Density map segmentation: `$IMP/tools/imppy.sh python scripts/script3_density_segmentation.py`
+-# Template selection by fitting to a density map: `$IMP/tools/imppy.sh python scripts/script4_score_templates_by_cc.py`
+-# Template alignment: `$IMP/tools/imppy.sh python scripts/script5_template_alignment.py`
+-# Model building and assessment: `$IMP/tools/imppy.sh python scripts/script6_model_building_and_assessment.py` and `$IMP/tools/imppy.sh python scripts/script7_pairwise_rmsd.py`
+-# Multiple fitting into a density map: `$IMP/tools/imppy.sh python scripts/script8_split_density.py` and `$IMP/tools/imppy.sh python scripts/script9_symmetric_multiple_fitting.py`
 
 ## Info
 
