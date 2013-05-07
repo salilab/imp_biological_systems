@@ -1,6 +1,6 @@
 # Rnapii
 
-\note Currently, generating the structure requires \c IMP.multifit2. It can be obtained from the author (Keren). We are working on moving the needed functionallity into \imp propper. Your patience is appreciated.
+Currently, generating the structure requires `IMP.multifit2`. It can be obtained from the author (Keren). The functionality has been moved into IMP.multifit, but this script has not yet been updated.
 
 ## How to run
 
@@ -52,7 +52,7 @@ This produces the file `rnapii.ev_proteomics.input` for assembling the component
 Finally we create the assembly fitting structures.
 `../../tools/imppy.sh python $IMP/modules/multifit2/bin/align_proteomics_em_atomic_plan.py -m 30 rnapii.asmb.input rnapii.ev_proteomics.input rnapii.indexes.mapping.input rnapii.alignment.param rnapii.docking.param rnapii.combinations.output rnapii.scores ignored`
 
-If you want to use proteomics restraints taken from [BioGrid](http://thebiogrid.org), you can modify the \c rnapii.ev_proteomics.input file, or use the provided `rnapii.biogrid_proteomics.input` instead.
+If you want to use proteomics restraints taken from [BioGrid](http://thebiogrid.org), you can modify the `rnapii.ev_proteomics.input` file, or use the provided `rnapii.biogrid_proteomics.input` instead.
 
 The output files
 - `rnapii.combinations.output` gives the indexes into `X_fitting.txt` of each solution.
