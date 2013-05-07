@@ -4,21 +4,21 @@
 A full description of the scripts can be found in
                    \salilab{pdf/Lasker_MethodsMolBiol_2011.pdf, Macromolecular assembly structures by comparative modeling and electron microscopy}.
 
-<b>Author(s):</b> Keren Lasker
+_Author(s)_: Keren Lasker
 
-<b>Version:</b> 1.0
+_Version_: 1.0
 
 
-<b>License:</b> \external{http://www.gnu.org/licenses/old-licenses/lgpl-2.1.html,LGPL}.
+_License_: \[LGPL](http://www.gnu.org/licenses/old-licenses/lgpl-2.1.html).
 This library is free software; you can redistribute it and/or
 modify it under the terms of the GNU Lesser General Public
 License as published by the Free Software Foundation; either
 version 2 of the License, or (at your option) any later version.
 
-<b>Testable:</b> No.
+_Testable_: No.
 
-<b>Parallelizeable:</b> No
+_Parallelizeable_: No
 
-<b>Publications:</b>
+_Publications_:
  - Keren Lasker, Javier A. Velazquez-Muriel, Benjamin M. Webb, Zheng Yang, Thomas E. Ferrin, Andrej Sali, \external{http://salilab.org/pdf/Lasker_MethodsMolBiol_2011.pdf,\quote{Macromolecular assembly structures by comparative modeling and electron microscopy}}, <em>Methods in Molecular Biology</em>, 2011.
 */
