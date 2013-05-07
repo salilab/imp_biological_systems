@@ -1,12 +1,12 @@
-## Rnapii
+# Rnapii
 
 \note Currently, generating the structure requires \c IMP.multifit2. It can be obtained from the author (Keren). We are working on moving the needed functionallity into \imp propper. Your patience is appreciated.
 
-# How to run
+## How to run
 
 All command here are given as if run from the \c biological_systems/rnapii directory in the build directory
 
-# Input
+## Input
 
  - `rnapii.subunit.list.txt`: The subunits list. Each line describes a subunit and contains: `name pdb_file [global/local]_fit`
 
@@ -16,13 +16,13 @@ All command here are given as if run from the \c biological_systems/rnapii direc
 
  - `rnapii.subunit.list.txt`: the list of subunits and corresponding pdb files
 
-# params Generating the parameters file
+## Generating the parameters file
 
 `../../tools/imppy.sh python ../../modules/multifit2/bin/generate_assembly_input.py -i rnapii.asmb.input -- rnapii data/rnapii.subunit.list.txt 30 data/emd_1283.mrc 20 2.5 0.2 60 60 60`
 
 This creates the file `rnapii.asmb.input` which can be used to run multifit.
 
-# runmf Running multifit
+## Running multifit
 First, create all the molecular surfaces to be used when computing excluded volumes.
 `../../tools/imppy.sh python ../../modules/multifit2/bin/create_all_surfaces.py rnapii.asmb.input`
 
@@ -58,7 +58,7 @@ The output files
 - `rnapii.combinations.output` gives the indexes into `X_fitting.txt` of each solution.
 - `rnapii.scores` gives the fitting score of each solution.
 
-# results Analyzing and displaying the results
+## Analyzing and displaying the results
 
 To convert the output files to pdbs do
 `../../tools/imppy.sh python ../../modules/multifit2/bin/write_ensemble_models.py 1z5s.asmb.input combinations.output asmb.mdl`
@@ -89,4 +89,3 @@ _Last known good IMP version_: None
 
 _Publications_:
  - Keren Lasker, Daniel Russel, Jeremy Phillips, Haim Wolfson, Andrej Sali, Determining architectures of macromolecular assemblies by aligning interaction networks to electon microscopy density maps, 2011.
-*/
