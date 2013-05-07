@@ -73,7 +73,7 @@ _Testable_: No.
 
 _Parallelizeable_: Yes.
 
-_Last known good \imp version_: None
+_Last known good IMP version_: None
 
 _Publications_:
  - J. Fernandez-Martinez, J. Phillips, M. Sekedat, R. Diaz-Avalos, J. Velazquez-Muriel, J. Franke, R. Williams, D. Stokes, B. Chait, A. Sali, M. Rout, Structure-function Map for a Heptameric Component of the Nuclear Pore Complex, 2011.
