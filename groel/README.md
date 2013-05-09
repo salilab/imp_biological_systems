@@ -13,6 +13,11 @@ A full description of the scripts can be found in
 
 ## Steps
 
+First, make a directory for the output by running `mkdir output`. Output
+files that were generated when these scripts were run for the first time are
+also provided, in the `precalculate_results` directory. Then, the scripts can
+be run in order:
+
 1. Template identification:
     `python scripts/script1_build_profile.py`
 2. Template(s) selection by sequence:
