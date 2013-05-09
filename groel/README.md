@@ -1,19 +1,34 @@
-# Groel
+# GroEL
+
+These scripts demonstrate the use of IMP,
+[MODELLER](http://salilab.org/modeller/) and
+[Chimera](http://www.cgl.ucsf.edu/chimera/) in the modeling of the
+bacterial molecular chaperone GroEL. First, MODELLER is used to generate
+structures for the individual components in the GroEL complex. Then, IMP
+is used to fit these components together into the electron microscopy density
+map of the entire complex.
 
 A full description of the scripts can be found in
 [Macromolecular assembly structures by comparative modeling and electron microscopy](http://salilab.org/pdf/Lasker_MethodsMolBiol_2011.pdf)
 
 ## Steps
-Modeling of the bacterial molecular chaperone GroEL
 
 1. Template identification:
-    `$IMP/tools/imppy.sh python scripts/script1_build_profile.py`
-2. Template(s) selection by sequence: `$IMP/tools/imppy.sh python scripts/script2_compare_templates.py`
-3, Density map segmentation: `$IMP/tools/imppy.sh python scripts/script3_density_segmentation.py`
-4. Template selection by fitting to a density map: `$IMP/tools/imppy.sh python scripts/script4_score_templates_by_cc.py`
-5. Template alignment: `$IMP/tools/imppy.sh python scripts/script5_template_alignment.py`
-6. Model building and assessment: `$IMP/tools/imppy.sh python scripts/script6_model_building_and_assessment.py` and `$IMP/tools/imppy.sh python scripts/script7_pairwise_rmsd.py`
-7. Multiple fitting into a density map: `$IMP/tools/imppy.sh python scripts/script8_split_density.py` and `$IMP/tools/imppy.sh python scripts/script9_symmetric_multiple_fitting.py`
+    `python scripts/script1_build_profile.py`
+2. Template(s) selection by sequence:
+    `python scripts/script2_compare_templates.py`
+3. Density map segmentation:
+    `python scripts/script3_density_segmentation.py`
+4. Template selection by fitting to a density map:
+    `python scripts/script4_score_templates_by_cc.py`
+5. Template alignment:
+    `python scripts/script5_template_alignment.py`
+6. Model building and assessment:
+    `python scripts/script6_model_building_and_assessment.py` and
+    `python scripts/script7_pairwise_rmsd.py`
+7. Multiple fitting into a density map:
+    `python scripts/script8_split_density.py` and
+    `python scripts/script9_symmetric_multiple_fitting.py`
 
 ## Info
 
