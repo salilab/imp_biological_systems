@@ -9,7 +9,7 @@ is used to fit these components together into the electron microscopy density
 map of the entire complex.
 
 A full description of the scripts can be found in
-[Macromolecular assembly structures by comparative modeling and electron microscopy](http://salilab.org/pdf/Lasker_MethodsMolBiol_2011.pdf)
+[Macromolecular assembly structures by comparative modeling and electron microscopy](http://salilab.org/pdf/Lasker_MethodsMolBiol_2011.pdf).
 
 ## Steps
 
