@@ -20,8 +20,9 @@ It uses IMP svn Revision: 16273
 
 with the following patch:
 
-
-```Index: modules/em/src/EnvelopeFitRestraint.cpp
+<pre>
+  <code>
+Index: modules/em/src/EnvelopeFitRestraint.cpp
 ===================================================================
 --- modules/em/src/EnvelopeFitRestraint.cpp	(revision 16273)
 +++ modules/em/src/EnvelopeFitRestraint.cpp	(working copy)
@@ -47,17 +48,18 @@ with the following patch:
    }
  
    if(best_found)
-```
+  </code>
+</pre>
 
 1)  test the python script:
 $impenv python run_modeling.py test
 no error = all tests passed
 
-2) run the sampling:
+2) run sampling:
 $impenv python run_modeling.py
 all output data will be stored in output/
 
-3) analyse the results
+3) analyse the results:
 
 3.1) compile the clustering algorithm in bin/
 gfortran cluster.f u3best.f -o cluster.x
