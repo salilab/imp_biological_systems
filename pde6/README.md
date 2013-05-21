@@ -12,7 +12,10 @@ The resulting models do not fit well into 3D EM density map (20A resolution).
 
 Therefore, IMP is used to fit the complex into the electron microscopy density map.
 
-...
+../segmented_dinamodel_2_new_template_noloops_noloopsGAF_newcrosslinkfile_newhinges_higheremweight_oldcode_140113/
+gfortran cluster.f u3best.f -o cluster.x
+~/imp-projects/imp-140113/imp-fast/tools/imppy.sh python model_and_run_msxl.py
+~/imp-projects/imp-140113/imp-fast/tools/imppy.sh python model_and_run_msxl.py test
 
 Finally the final models are rebuilt and refined with modeller:
 `model_refinement/cluster1/model-single.py`;
