@@ -52,23 +52,23 @@ Index: modules/em/src/EnvelopeFitRestraint.cpp
 
 
 1)  test the python script:
-$impenv python run_modeling.py test
+`$impenv python run_modeling.py test`
 no error = all tests passed
 
 2) run sampling:
-$impenv python run_modeling.py
+`$impenv python run_modeling.py`
 all output data will be stored in output/
 
 3) analyse the results:
 
-3.1) compile the clustering algorithm in bin/
-gfortran cluster.f u3best.f -o cluster.x
+3.1) compile the clustering algorithm in `bin/`
+`gfortran cluster.f u3best.f -o cluster.x`
 
 3.2) run the analysis script:
-sh bin/get_frames.sh
+`sh bin/get_frames.sh`
 
-100 best scoring frames will be stored in best_pdb/
-clustering data will be stored in clustering/
+100 best scoring frames will be stored in `best_pdb/`
+clustering data will be stored in `clustering/`
 
 ## Refinement
 
