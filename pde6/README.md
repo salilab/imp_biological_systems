@@ -5,6 +5,8 @@ These scripts demonstrate the use of IMP,
 [Chimera](http://www.cgl.ucsf.edu/chimera/) in the modeling of the
 phosphodiesterase (PDE6).
 
+## Homology modeling
+
 First, MODELLER is used to generate initial model for the structure using multople templates (PDB codes 1tbf, 3bjc, 3dba, 3ibj). Cross links, symmetry and secondary structure restraints are used in modelling:
  `comparative_modelling/model_mult.py`
 
@@ -12,16 +14,14 @@ The resulting models do not fit well into 3D EM density map (20A resolution).
 
 Therefore, IMP is used to fit the complex into the electron microscopy density map.
 
-../segmented_dinamodel_2_new_template_noloops_noloopsGAF_newcrosslinkfile_newhinges_higheremweight_oldcode_140113/
 
-Integrative modeling with IMP
+
+## Integrative modeling with IMP
 
 It uses IMP svn Revision: 16273
 
 with the following patch:
 
-<pre>
-  <code>
 Index: modules/em/src/EnvelopeFitRestraint.cpp
 ===================================================================
 --- modules/em/src/EnvelopeFitRestraint.cpp	(revision 16273)
@@ -48,8 +48,8 @@ Index: modules/em/src/EnvelopeFitRestraint.cpp
    }
  
    if(best_found)
-  </code>
-</pre>
+
+
 
 1)  test the python script:
 $impenv python run_modeling.py test
@@ -70,6 +70,7 @@ sh bin/get_frames.sh
 100 best scoring frames will be stored in best_pdb/
 clustering data will be stored in clustering/
 
+## Refinement
 
 Finally the final models are rebuilt and refined with modeller:
 `model_refinement/cluster1/model-single.py`;
