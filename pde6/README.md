@@ -22,6 +22,7 @@ It uses IMP svn Revision: 16273
 
 with the following patch:
 
+```
 Index: modules/em/src/EnvelopeFitRestraint.cpp
 ===================================================================
 --- modules/em/src/EnvelopeFitRestraint.cpp	(revision 16273)
@@ -48,8 +49,8 @@ Index: modules/em/src/EnvelopeFitRestraint.cpp
    }
  
    if(best_found)
-
-
+```
+Usage and content of the directory `integrative-modeling`
 
 1)  test the python script:
 `$impenv python run_modeling.py test`
