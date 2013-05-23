@@ -1,3 +1,5 @@
+#!/usr/bin/env python
+
 import sys,os
 commands=[]
 model_fn="data/templates/1iokA.pdb"

@@ -1,3 +1,5 @@
+#!/usr/bin/env python
+
 import subprocess
 
 cmd = ['multifit.py', 'segment', "data/em_maps/groel-11.5A.mrc",
