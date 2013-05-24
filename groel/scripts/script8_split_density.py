@@ -1,3 +1,5 @@
+#!/usr/bin/env python
+
 import IMP.em
 density_fn="data/em_maps/groel-11.5A.mrc"
 map_origin_x=-135

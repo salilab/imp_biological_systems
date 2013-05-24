@@ -1,3 +1,5 @@
+#!/usr/bin/env python
+
 from modeller import *
 
 env = environ()

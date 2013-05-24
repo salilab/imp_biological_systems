@@ -19,21 +19,21 @@ also provided, in the `precalculate_results` directory. Then, the scripts can
 be run in order:
 
 1. Template identification:
-    `python scripts/script1_build_profile.py`
+    `scripts/script1_build_profile.py`
 2. Template(s) selection by sequence:
-    `python scripts/script2_compare_templates.py`
+    `scripts/script2_compare_templates.py`
 3. Density map segmentation:
-    `python scripts/script3_density_segmentation.py`
+    `scripts/script3_density_segmentation.py`
 4. Template selection by fitting to a density map:
-    `python scripts/script4_score_templates_by_cc.py`
+    `scripts/script4_score_templates_by_cc.py`
 5. Template alignment:
-    `python scripts/script5_template_alignment.py`
+    `scripts/script5_template_alignment.py`
 6. Model building and assessment:
-    `python scripts/script6_model_building_and_assessment.py` and
-    `python scripts/script7_pairwise_rmsd.py`
+    `scripts/script6_model_building_and_assessment.py` and
+    `scripts/script7_pairwise_rmsd.py`
 7. Multiple fitting into a density map:
-    `python scripts/script8_split_density.py` and
-    `python scripts/script9_symmetric_multiple_fitting.py`
+    `scripts/script8_split_density.py` and
+    `scripts/script9_symmetric_multiple_fitting.py`
 
 ## Info
 

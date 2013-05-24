@@ -1,3 +1,5 @@
+#!/usr/bin/env python
+
 import IMP.em
 import IMP.atom
 import IMP.multifit
