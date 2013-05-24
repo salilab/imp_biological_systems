@@ -1,6 +1,7 @@
 #!/bin/bash
 
 mkdir best_pdb
+
 rm best_pdb/*.pdb
 
 bin/process_output.py -f output/models_stats.out --soft -s Nframe Total_Score xlms_Score em_all_0 Domain_Linking_0 Excluded_Volume_0 Excluded_Volume_Symm_0 Template_Restraint_Inter Template_Restraint_Intra | sort -r -n -k 3 | tail -101 > best_pdb/scores.dat
