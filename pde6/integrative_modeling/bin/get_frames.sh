@@ -1,17 +1,20 @@
 #!/bin/bash
+
+mkdir best_pdb
 rm best_pdb/*.pdb
 
-bin/process_output.py -f output/models_stats.out --soft -s Nframe Total_Score xlms_Score em_all_0 Domain_Linking_0 Excluded_Volume_0 Excluded_Volume_Symm_0 Template_Restraint_Inter Template_Restraint_Intra | sort -r -n -k 3 | tail -101 > best_pdb/scores.dat 
+bin/process_output.py -f output/models_stats.out --soft -s Nframe Total_Score xlms_Score em_all_0 Domain_Linking_0 Excluded_Volume_0 Excluded_Volume_Symm_0 Template_Restraint_Inter Template_Restraint_Intra | sort -r -n -k 3 | tail -101 > best_pdb/scores.dat
 frames=`cat best_pdb/scores.dat | grep -v '#' | awk '{print $2}'`
 
-for i in $frames ; 
-do 
+for i in $frames ;
+do
 echo $i
-awk 'BEGIN{nf=0};($1=="MODEL"){nf=nf+1};($1!="MODEL"){if(nf=='"$i"'){print $0}}' output/trajectory.0.pdb > best_pdb/$i.A.pdb 
-awk 'BEGIN{nf=0};($1=="MODEL"){nf=nf+1};($1!="MODEL"){if(nf=='"$i"'){print $0}}' output/trajectory.0.symmetry.0.pdb | sed 's/ A / B /g' > best_pdb/$i.B.pdb 
-cat best_pdb/$i.A.pdb best_pdb/$i.B.pdb | grep -v "ENDMDL" > best_pdb/$i.pdb 
+awk 'BEGIN{nf=0};($1=="MODEL"){nf=nf+1};($1!="MODEL"){if(nf=='"$i"'){print $0}}' output/trajectory.0.pdb > best_pdb/$i.A.pdb
+awk 'BEGIN{nf=0};($1=="MODEL"){nf=nf+1};($1!="MODEL"){if(nf=='"$i"'){print $0}}' output/trajectory.0.symmetry.0.pdb | sed 's/ A / B /g' > best_pdb/$i.B.pdb
+cat best_pdb/$i.A.pdb best_pdb/$i.B.pdb | grep -v "ENDMDL" > best_pdb/$i.pdb
 done
 
+mkdir clustering
 rm best_pdb/*.?.pdb
 rm clustering/clus*.pdb
 rm clustering/clus*.score.dat

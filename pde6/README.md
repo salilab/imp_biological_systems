@@ -22,7 +22,7 @@ It uses IMP svn Revision: 16273
 
 with the following patch:
 
-Index: modules/em/src/EnvelopeFitRestraint.cpp
+`Index: modules/em/src/EnvelopeFitRestraint.cpp
 ===================================================================
 --- modules/em/src/EnvelopeFitRestraint.cpp	(revision 16273)
 +++ modules/em/src/EnvelopeFitRestraint.cpp	(working copy)
@@ -46,8 +46,8 @@ Index: modules/em/src/EnvelopeFitRestraint.cpp
 -    }
 +    //}
    }
- 
-   if(best_found)
+
+   if(best_found)`
 
 
 
