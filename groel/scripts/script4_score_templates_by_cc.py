@@ -46,7 +46,6 @@ for i,t in enumerate(templates):
     #refine the best scoring fit
     mhs=IMP.atom.Hierarchies()
     mhs.append(mh_chain)
-    pdb_opt_state=None #IMP.atom.WritePDBOptimizerState(mhs,"refined_temp_%03d.pdb")
     #todo - return refinement
     #refined_sols = IMP.em.local_rigid_fitting(
     #    rb,rb_refiner,
