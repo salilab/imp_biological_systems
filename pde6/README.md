@@ -8,7 +8,7 @@ phosphodiesterase (PDE6).
 ## Homology modeling
 
 First, MODELLER is used to generate initial model for the structure using multople templates (PDB codes 1tbf, 3bjc, 3dba, 3ibj). Cross links, symmetry and secondary structure restraints are used in modelling:
- `comparative_modelling/model_mult.py`
+ `cd comparative_modelling; ./model_mult.py`
 
 The resulting models do not fit well into 3D EM density map (20A resolution).
 
@@ -50,14 +50,14 @@ Index: modules/em/src/EnvelopeFitRestraint.cpp
 
    if(best_found)
 ```
-Usage and content of the directory `integrative-modeling`
+Usage and content of the directory `integrative_modeling`
 
 1)  test the python script:
-`$impenv python run_modeling.py test`
+`./run_modeling.py test`
 no error = all tests passed
 
 2) run sampling:
-`$impenv python run_modeling.py`
+`./run_modeling.py`
 all output data will be stored in output/
 
 3) analyse the results:
@@ -66,7 +66,7 @@ all output data will be stored in output/
 `gfortran cluster.f u3best.f -o cluster.x`
 
 3.2) run the analysis script:
-`sh bin/get_frames.sh`
+`bin/get_frames.sh`
 
 100 best scoring frames will be stored in `best_pdb/`
 clustering data will be stored in `clustering/`
