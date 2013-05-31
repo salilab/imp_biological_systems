@@ -7,50 +7,20 @@ phosphodiesterase (PDE6).
 
 ## Homology modeling
 
-First, MODELLER is used to generate initial model for the structure using multople templates (PDB codes 1tbf, 3bjc, 3dba, 3ibj). Cross links, symmetry and secondary structure restraints are used in modelling:
+MODELLER is used to generate initial model for the structure using multiple templates 
+(PDB codes 1tbf, 3bjc, 3dba, 3ibj). Cross links, symmetry and secondary structure restraints are used in modelling:
  `cd comparative_modelling; ./model_mult.py`
-
-The resulting models do not fit well into 3D EM density map (20A resolution).
-
-Therefore, IMP is used to fit the complex into the electron microscopy density map.
-
 
 
 ## Integrative modeling with IMP
 
-It uses IMP svn Revision: 16273
+The initial models do not fit well into 3D EM density map (20A resolution).
+Therefore, IMP is used to fit the complex into the electron microscopy density map.
 
-with the following patch:
-
-```
-Index: modules/em/src/EnvelopeFitRestraint.cpp
-===================================================================
---- modules/em/src/EnvelopeFitRestraint.cpp	(revision 16273)
-+++ modules/em/src/EnvelopeFitRestraint.cpp	(working copy)
-@@ -45,9 +45,9 @@
-   double best_score = -std::numeric_limits<double>::max();
-   for(unsigned int j=0; j<map_transforms.size(); j++) {
-     //std::cerr << "Scoring " << map_transforms[j] << std::endl;
--    if(!envelope_score_.is_penetrating(coordinates,
--                                       map_transforms[j],
--                                       penetration_thr)) {
-+    //if(!envelope_score_.is_penetrating(coordinates,
-+    //                                   map_transforms[j],
-+    //                                   penetration_thr)) {
-       //std::cerr << "  not penetrating " << map_transforms[j] << std::endl;
-       double score = envelope_score_.score(coordinates, map_transforms[j]);
-       //std::cerr << "  score = " << score << std::endl;
-@@ -56,7 +56,7 @@
-         best_trans = map_transforms[j];
-         best_found = true;
-       }
--    }
-+    //}
-   }
-
-   if(best_found)
-```
 Usage and content of the directory `integrative_modeling`
+
+0) access the directory:
+`cd integrative_modeling`
 
 1)  test the python script:
 `./run_modeling.py test`
