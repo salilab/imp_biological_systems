@@ -36,7 +36,7 @@ The benchmark should be run with IMP git version develop-c47408c.
 
    - To run all tests, just use a bash loop:
 
-      `for ID in \`seq 1 1280\`; do bash do_test.sh $ID; done`
+      `for((ID=1;ID<=1280;ID++)); do bash do_test.sh $ID; done`
 
    - To run all tests on the QB3 cluster, first open `job.sh` and set the `IMP` and `ROOT` directories, as well as
      the name of the directories where standard output and error will be written.
