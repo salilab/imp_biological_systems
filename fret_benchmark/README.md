@@ -25,25 +25,24 @@ The benchmark should be run with IMP git version develop-c47408c.
 1) PRELIMINARY. Compile IMP git version develop-c47408c
 
 2) EXECUTION. Go to `DATA/SCRIPTS/BENCHMARK_LINKER` or `DATA/SCRIPTS/BENCHMARK_NOLINKER` where you will find
-   the scripts to run the benchmark with or without using a model for linker flexibility, respectively.
-   Then: 
+   the scripts to run the benchmark with or without using a model for linker flexibility, respectively. Then: 
 
-    - To run a specific test, first open `do_test.sh` and set the `IMP` and `ROOT` directories.
-      Please, do not change the name of the other directories. Then:
+   - To run a specific test, first open `do_test.sh` and set the `IMP` and `ROOT` directories.
+     Please, do not change the name of the other directories. Then:
 
-       `bash do_test.sh ID`
+      `bash do_test.sh ID`
 
-      where `ID` is an integer from 1 to 1280.
+     where `ID` is an integer from 1 to 1280.
 
-    - To run all tests, just use a bash loop:
+   - To run all tests, just use a bash loop:
 
-       `for ID in `seq 1 1280`; do bash do_test.sh $ID; done`
+      `for ID in `seq 1 1280`; do bash do_test.sh $ID; done`
 
-    - To run all tests on the QB3 cluster, first open `job.sh` and set the `IMP` and `ROOT` directories, as well as
-      the name of the directories where standard output and error will be written.
-      Please, do not change the name of the other directories. Then:
+   - To run all tests on the QB3 cluster, first open `job.sh` and set the `IMP` and `ROOT` directories, as well as
+     the name of the directories where standard output and error will be written.
+     Please, do not change the name of the other directories. Then:
 
-       `qsub job.sh`
+      `qsub job.sh`
 
 3) ANALYSIS. From the `ROOT` directory, do:
 
@@ -54,10 +53,10 @@ The benchmark should be run with IMP git version develop-c47408c.
 
    Statistics will be written to the `.dat` files, which should be compared to the results in `DATA/REFERENCE_RESULTS` and to those
    published in Bonomi et al. "Protein complex structures from Bayesian modeling of in vivo FRET data", as follows.
-    - `linker.dat`             -> Table 1
-    - `nolinker.dat`           -> Table S1
-    - `linker_per_complex.dat` -> Table S2
-    - `linker_per_complex.dat` -> Table S3
+   - `linker.dat`             -> Table 1
+   - `nolinker.dat`           -> Table S1
+   - `linker_per_complex.dat` -> Table S2
+   - `linker_per_complex.dat` -> Table S3
 
 
 _Author(s)_: Max Bonomi
