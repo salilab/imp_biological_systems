@@ -5,7 +5,7 @@ import numpy
 
 model_fn=[]
 for i in range(1,11):
-    model_fn.append("P0A6F5.B9999%(a)04d.pdb"%{'a':i})
+    model_fn.append("output/P0A6F5.B9999%(a)04d.pdb"%{'a':i})
 mhs_xyz=[]
 ca_sel=IMP.atom.CAlphaPDBSelector()
 mdl=IMP.Model()
