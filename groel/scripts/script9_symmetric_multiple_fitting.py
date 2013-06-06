@@ -1,18 +1,20 @@
 #!/usr/bin/env python
 
 import subprocess
+import os
 
-model_fn = "data/templates/1iokA.pdb"
-dens_fn = ["output/groel-11.5A.bottom.mrc", "output/groel-11.5A.top.mrc"]
+os.chdir('output')
+model_fn = "../data/templates/1iokA.pdb"
+dens_fn = ["groel-11.5A.bottom.mrc", "groel-11.5A.top.mrc"]
 resolution = 11.5
 spacing = 2.7
 threshold = 1.3
 map_origin_x = [-135, -135]
 map_origin_y = [-135, -135]
 map_origin_z = [2.7, -135]
-param_fn = ["output/multifit.bottom.param", "output/multifit.top.param"]
-output_fn = ["output/multifit.bottom.output", "output/multifit.top.output"]
-sol_model_fn = ["output/model.bottom", "output/model.top"]
+param_fn = ["multifit.bottom.param", "multifit.top.param"]
+output_fn = ["multifit.bottom.output", "multifit.top.output"]
+sol_model_fn = ["model.bottom", "model.top"]
 symm_deg = 7
 
 # generate a surface file of the model
