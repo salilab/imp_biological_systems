@@ -35,3 +35,6 @@ for i in range(2):
     command = ["cnmultifit.py", "build", param_fn[i]]
     print " ".join(command)
     subprocess.call(command)
+
+# Delete the surface file
+os.unlink(model_fn + '.ms')
