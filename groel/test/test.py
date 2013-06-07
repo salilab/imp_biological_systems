@@ -129,5 +129,12 @@ class Tests(unittest.TestCase):
         p = subprocess.check_call(['scripts/' \
                                    'script7_pairwise_rmsd.py'])
 
+    def test_script8(self):
+        """Test step 8 (split density)"""
+        # Make sure the script runs without errors
+        p = subprocess.check_call(['scripts/script8_split_density.py'])
+        os.unlink('output/groel-11.5A.top.mrc')
+        os.unlink('output/groel-11.5A.bottom.mrc')
+
 if __name__ == '__main__':
     unittest.main()
