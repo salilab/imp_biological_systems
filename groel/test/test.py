@@ -13,8 +13,8 @@ class Tests(unittest.TestCase):
     def setUp(self):
         # Change into top-level directory and make directory for output
         os.chdir(os.path.join(os.path.dirname(sys.argv[0]), '..'))
-        shutil.rmtree('output', ignore_errors=True)
-        os.mkdir('output')
+#       shutil.rmtree('output', ignore_errors=True)
+#       os.mkdir('output')
 
     def test_script1(self):
         """Test step 1 (build profile)"""
@@ -135,6 +135,38 @@ class Tests(unittest.TestCase):
         p = subprocess.check_call(['scripts/script8_split_density.py'])
         os.unlink('output/groel-11.5A.top.mrc')
         os.unlink('output/groel-11.5A.bottom.mrc')
+
+    def test_script9(self):
+        """Test step 9 (multiple fitting)"""
+        # Get inputs (outputs from step 8)
+        for i in ('top', 'bottom'):
+            shutil.copy('precalculate_results/stage8_split_density/' \
+                        'groel-11.5A.%s.mrc' % i, 'output')
+        # Make sure the script runs without errors
+        p = subprocess.check_call(['scripts/' \
+                                   'script9_symmetric_multiple_fitting.py'])
+        e = modeller.environ()
+        ref = modeller.model(e,
+               file='precalculate_results/stage9_symmetric_multiple_fitting/' \
+                    'model.top.0.pdb')
+        sel = modeller.selection(ref).only_atom_types('CA')
+        # At least one model in each ring should be close to the reference
+        for side in ('top', 'bottom'):
+            rms = []
+            for i in range(6):
+                fname = 'output/model.%s.%d.pdb' % (side, i)
+                m =  modeller.model(e, file=fname)
+                a = modeller.alignment(e)
+                a.append_model(ref, align_codes='ref')
+                a.append_model(m, align_codes='model')
+                rms.append(sel.superpose(m, a).rms)
+                os.unlink(fname)
+            self.assert_(min(rms) < 10.0)
+        os.unlink('output/intermediate_asmb_sols.out')
+        for side in ('top', 'bottom'):
+            os.unlink('output/multifit.%s.output' % side)
+            os.unlink('output/multifit.%s.output.symm.ref' % side)
+            os.unlink('output/multifit.%s.param' % side)
 
 if __name__ == '__main__':
     unittest.main()
