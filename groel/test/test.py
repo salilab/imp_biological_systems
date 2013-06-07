@@ -118,5 +118,16 @@ class Tests(unittest.TestCase):
         self.assertEqual(wc, 11)
         os.unlink(scores)
 
+    def test_script7(self):
+        """Test step 7 (pairwise RMSD)"""
+        # Get inputs (outputs from steps 6)
+        for i in range(1, 11):
+            shutil.copy('precalculate_results/' \
+                        'stage6_model_building_and_assessment/' \
+                        'P0A6F5.B9999%04d.pdb' % i, 'output')
+        # Make sure the script runs without errors
+        p = subprocess.check_call(['scripts/' \
+                                   'script7_pairwise_rmsd.py'])
+
 if __name__ == '__main__':
     unittest.main()
