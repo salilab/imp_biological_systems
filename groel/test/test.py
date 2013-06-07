@@ -76,5 +76,15 @@ class Tests(unittest.TestCase):
             os.unlink(fname)
         os.unlink('output/score_templates_by_cc.log')
 
+    def test_script5(self):
+        """Test step 5 (template alignment)"""
+        # Make sure the script runs without errors
+        p = subprocess.check_call(['scripts/script5_template_alignment.py'])
+        # Check output alignment
+        e = modeller.environ()
+        a = modeller.alignment(e, file='output/groel-1iokA.ali')
+        self.assertEqual([x.code for x in a], ['1iok', 'P0A6F5'])
+        os.unlink('output/groel-1iokA.ali')
+
 if __name__ == '__main__':
     unittest.main()
