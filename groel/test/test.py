@@ -86,5 +86,37 @@ class Tests(unittest.TestCase):
         self.assertEqual([x.code for x in a], ['1iok', 'P0A6F5'])
         os.unlink('output/groel-1iokA.ali')
 
+    def test_script6(self):
+        """Test step 6 (model building and assessment)"""
+        # Get inputs (outputs from steps 3 and 5)
+        shutil.copy('precalculate_results/stage3_density_segmentation/' \
+                    'groel_subunit_11.mrc', 'output')
+        shutil.copy('precalculate_results/stage5_template_alignment/' \
+                    'groel-1iokA.ali', 'output')
+        # Make sure the script runs without errors
+        p = subprocess.check_call(['scripts/' \
+                                   'script6_model_building_and_assessment.py'])
+        # Check output models
+        e = modeller.environ()
+        for i in range(1, 11):
+            base = 'output/P0A6F5.B9999%04d' % i
+            pdb = base + '.pdb'
+            trunc_pdb = base + '.truncated.pdb'
+            trunc_fit_pdb = base + '.truncated.fitted.pdb'
+            m = modeller.model(e, file=pdb)
+            self.assertEqual(len(m.residues), 548)
+            m = modeller.model(e, file=trunc_pdb)
+            self.assertEqual(len(m.residues), 524)
+            m = modeller.model(e, file=trunc_fit_pdb)
+            self.assertEqual(len(m.residues), 524)
+            os.unlink(pdb)
+            os.unlink(trunc_pdb)
+            os.unlink(trunc_fit_pdb)
+        scores = 'output/model_building.scores.output'
+        wc = len(open(scores).readlines())
+        # Should be one line for each of 10 models, plus a header
+        self.assertEqual(wc, 11)
+        os.unlink(scores)
+
 if __name__ == '__main__':
     unittest.main()
