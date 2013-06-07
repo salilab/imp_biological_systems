@@ -13,8 +13,8 @@ class Tests(unittest.TestCase):
     def setUp(self):
         # Change into top-level directory and make directory for output
         os.chdir(os.path.join(os.path.dirname(sys.argv[0]), '..'))
-#       shutil.rmtree('output', ignore_errors=True)
-#       os.mkdir('output')
+        shutil.rmtree('output', ignore_errors=True)
+        os.mkdir('output')
 
     def test_script1(self):
         """Test step 1 (build profile)"""
