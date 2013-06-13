@@ -13,8 +13,7 @@ class Tests(unittest.TestCase):
                  '1la1A', '1q3qA', '1sjpA', '1srvA', '1we3A', '3kfbA', '3kfeA']
 
     def setUp(self):
-        # Change into top-level directory and make directory for output
-        os.chdir(os.path.join(os.path.dirname(sys.argv[0]), '..'))
+        # Make directory for output
         shutil.rmtree('output', ignore_errors=True)
         os.mkdir('output')
 
@@ -171,4 +170,6 @@ class Tests(unittest.TestCase):
             os.unlink('output/multifit.%s.param' % side)
 
 if __name__ == '__main__':
+    # Always run from top-level directory
+    os.chdir(os.path.join(os.path.dirname(sys.argv[0]), '..'))
     unittest.main()
