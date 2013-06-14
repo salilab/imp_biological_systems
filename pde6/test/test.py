@@ -19,6 +19,12 @@ class Tests(unittest.TestCase):
         p = subprocess.check_call(['./run_modeling.py', 'test'],
                                   cwd='integrative_modeling')
 
+    def test_refinement(self):
+        """Test the refinement script"""
+        # Make sure the script runs without errors
+        p = subprocess.check_call(['./model-single.py', '--run_quick_test'],
+                                  cwd='model_refinement/cluster1')
+
 if __name__ == '__main__':
     # Always run from top-level directory
     os.chdir(os.path.join(os.path.dirname(sys.argv[0]), '..'))

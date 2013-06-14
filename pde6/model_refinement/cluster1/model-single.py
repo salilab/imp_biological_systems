@@ -1,5 +1,6 @@
 #!/usr/bin/env python
 
+import sys
 from modeller import *
 from modeller.automodel import *
 
@@ -86,4 +87,9 @@ a = MyModel(env, alnfile='pde6-pde6.ali',
 #a.very_fast()                       # prepare for extremely fast optimization
 a.starting_model = 1
 a.ending_model = 5
+
+# If testing is requested, build just one model:
+if sys.argv[-1] == '--run_quick_test':
+    a.ending_model = 1
+
 a.make()

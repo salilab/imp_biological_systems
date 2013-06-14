@@ -43,8 +43,8 @@ clustering data will be stored in `clustering/`
 
 ## Refinement
 
-Finally the final models are rebuilt and refined with modeller:
-`model_refinement/cluster1/model-single.py`;
+Finally the final models are rebuilt and refined with Modeller:
+`cd model_refinement/cluster1; ./model-single.py`
 
 
 _Author(s)_: Riccardo Pellarin, Dina Schneidman
