@@ -1,5 +1,6 @@
 #!/usr/bin/env python
 
+import sys
 from modeller import *
 from modeller.automodel import *
 
@@ -81,4 +82,9 @@ a = MyModel(env, alnfile='pde6-multiple-templates.ali',
             assess_methods=(assess.DOPE))
 a.starting_model = 1
 a.ending_model = 200
+
+# If testing is requested, build just one model:
+if sys.argv[-1] == '--run_quick_test':
+    a.ending_model = 1
+
 a.make()
