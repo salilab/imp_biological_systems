@@ -22,13 +22,14 @@ class run_class():
         for element in rigid_body_list:
             atoms=[]
             for interval in element:
-            #rinterval upper bound is incremented by one because the
-            #residue_indexes attribute cuts the upper edge
-                rinterval=[(interval[0],interval[1]+1)]
+            #rinterval upper bound is incremented by one because
+            #range() cuts the upper edge
+                rinterval=(interval[0],interval[1]+1)
                 if (interval[0]==-1 or interval[1]==-1):
                     s=IMP.atom.Selection(prot,chains=interval[2])
                 else:
-                    s=IMP.atom.Selection(prot,chains=interval[2],residue_indexes=rinterval)
+                    s=IMP.atom.Selection(prot,chains=interval[2],
+                                         residue_indexes=range(rinterval))
                 for p in s.get_selected_particles():
                     atoms.append(IMP.core.XYZR(p))
             prb=IMP.Particle(self.m)
@@ -244,13 +245,14 @@ class run_class():
              
              particles=[]
              for interval in domains:
-               #rinterval upper bound is incremented by one because the
-               #residue_indexes attribute cuts the upper edge
-                  rinterval=[(interval[0],interval[1]+1)]
+               #rinterval upper bound is incremented by one because
+               #range() cuts the upper edge
+                  rinterval=(interval[0],interval[1]+1)
                   if (interval[0]==-1 or interval[1]==-1):
                       s=IMP.atom.Selection(interval[3],chains=interval[2])
                   else:
-                      s=IMP.atom.Selection(interval[3],chains=interval[2],residue_indexes=rinterval)
+                      s=IMP.atom.Selection(interval[3],chains=interval[2],
+                                           residue_indexes=range(rinterval))
                   particles+=s.get_selected_particles()
              #read the map
              map = IMP.em.read_map(filename,IMP.em.MRCReaderWriter())                  
@@ -659,9 +661,11 @@ class run_class():
         #setting up the template restraint
         
         self.m.update()
-        s1=IMP.atom.Selection(self.prot[0],chains="A",residue_indexes=[(71,453)])
+        s1=IMP.atom.Selection(self.prot[0],chains="A",
+                              residue_indexes=range(71,453))
         ps1=s1.get_selected_particles()
-        s2=IMP.atom.Selection(self.prot_scopies[0][0],chains="A",residue_indexes=[(71,453)])
+        s2=IMP.atom.Selection(self.prot_scopies[0][0],chains="A",
+                              residue_indexes=range(71,453))
         ps2=s2.get_selected_particles()              
         allps=ps1+ps2
         self.add_template_restraint(ps1,ps2,"Inter")
