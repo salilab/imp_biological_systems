@@ -29,7 +29,7 @@ class run_class():
                     s=IMP.atom.Selection(prot,chains=interval[2])
                 else:
                     s=IMP.atom.Selection(prot,chains=interval[2],
-                                         residue_indexes=range(rinterval))
+                                         residue_indexes=range(*rinterval))
                 for p in s.get_selected_particles():
                     atoms.append(IMP.core.XYZR(p))
             prb=IMP.Particle(self.m)
@@ -252,7 +252,7 @@ class run_class():
                       s=IMP.atom.Selection(interval[3],chains=interval[2])
                   else:
                       s=IMP.atom.Selection(interval[3],chains=interval[2],
-                                           residue_indexes=range(rinterval))
+                                           residue_indexes=range(*rinterval))
                   particles+=s.get_selected_particles()
              #read the map
              map = IMP.em.read_map(filename,IMP.em.MRCReaderWriter())                  
