@@ -685,6 +685,7 @@ class run_class():
            nsteplowtemp=1
            nstephightemp=1 
            self.test_scores()          
+           return
         else:
            nstepmax=10001
            nsteplowtemp=150
