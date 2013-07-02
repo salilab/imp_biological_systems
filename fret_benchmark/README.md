@@ -20,7 +20,7 @@ The benchmark should be run with IMP git version develop-c47408c.
 
 ## How to run the benchmark 
 
-0) This the `ROOT` directory.
+0) This is the `ROOT` directory.
 
 1) PRELIMINARY. Compile IMP git version develop-c47408c
 
