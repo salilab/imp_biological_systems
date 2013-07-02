@@ -1,3 +1,5 @@
+#!/bin/env python
+
 import sys
 
 sigma0=[0.001,0.01]
@@ -15,8 +17,8 @@ for c in complexes3:
     for s in sigma0:
         for n in ndata:
             for i in range(0,ntrials):
-                print "$IMMPY python ${SCRIPTDIR}/generate_DATA.py --pdbs ${PDBDIR}/%s.pdb ${PDBDIR}/%s.pdb ${PDBDIR}/%s.pdb --names %s %s %s --ntrials 50 --R0 49.0 --GMM ${GMMDIR}/%s.out ${GMMDIR}/%s.out ${GMMDIR}/%s.out --Ida 6.0 --Kda 16.0 --Sigma0 %lf --sensitivity 0.0001" % (c[0],c[1],c[2],c[0],c[1],c[2],c[0],c[1],c[2],s)
-                print "$IMMPY python ${SCRIPTDIR}/sample.py --pdbs ${PDBDIR}/%s.pdb ${PDBDIR}/%s.pdb ${PDBDIR}/%s.pdb --names %s %s %s --refpdbs ${PDBDIR}/%s.pdb ${PDBDIR}/%s.pdb ${PDBDIR}/%s.pdb --GMM ${GMMDIR}/%s.out ${GMMDIR}/%s.out ${GMMDIR}/%s.out --datanumber %lf --indatafile data.out --outdatafile selected-data.out --fixonerigidbody --Box 100" % (c[0],c[1],c[2],c[0],c[1],c[2],c[0],c[1],c[2],c[0],c[1],c[2],n)
+                print "${SCRIPTDIR}/generate_DATA.py --pdbs ${PDBDIR}/%s.pdb ${PDBDIR}/%s.pdb ${PDBDIR}/%s.pdb --names %s %s %s --ntrials 50 --R0 49.0 --GMM ${GMMDIR}/%s.out ${GMMDIR}/%s.out ${GMMDIR}/%s.out --Ida 6.0 --Kda 16.0 --Sigma0 %lf --sensitivity 0.0001" % (c[0],c[1],c[2],c[0],c[1],c[2],c[0],c[1],c[2],s)
+                print "${SCRIPTDIR}/sample.py --pdbs ${PDBDIR}/%s.pdb ${PDBDIR}/%s.pdb ${PDBDIR}/%s.pdb --names %s %s %s --refpdbs ${PDBDIR}/%s.pdb ${PDBDIR}/%s.pdb ${PDBDIR}/%s.pdb --GMM ${GMMDIR}/%s.out ${GMMDIR}/%s.out ${GMMDIR}/%s.out --datanumber %lf --indatafile data.out --outdatafile selected-data.out --fixonerigidbody --Box 100" % (c[0],c[1],c[2],c[0],c[1],c[2],c[0],c[1],c[2],c[0],c[1],c[2],n)
 
 # read pdbs from file
 complexes4=[]
@@ -29,5 +31,5 @@ for c in complexes4:
     for s in sigma0:
         for n in ndata:
             for i in range(0,ntrials):
-                print "$IMMPY python ${SCRIPTDIR}/generate_DATA.py --pdbs ${PDBDIR}/%s.pdb ${PDBDIR}/%s.pdb ${PDBDIR}/%s.pdb ${PDBDIR}/%s.pdb --names %s %s %s %s --ntrials 50 --R0 49.0 --GMM ${GMMDIR}/%s.out ${GMMDIR}/%s.out ${GMMDIR}/%s.out ${GMMDIR}/%s.out --Ida 6.0 --Kda 16.0 --Sigma0 %lf --sensitivity 0.0001" % (c[0],c[1],c[2],c[3],c[0],c[1],c[2],c[3],c[0],c[1],c[2],c[3],s)
-                print "$IMMPY python ${SCRIPTDIR}/sample.py --pdbs ${PDBDIR}/%s.pdb ${PDBDIR}/%s.pdb ${PDBDIR}/%s.pdb ${PDBDIR}/%s.pdb --names %s %s %s %s --refpdbs ${PDBDIR}/%s.pdb ${PDBDIR}/%s.pdb ${PDBDIR}/%s.pdb ${PDBDIR}/%s.pdb --GMM ${GMMDIR}/%s.out ${GMMDIR}/%s.out ${GMMDIR}/%s.out ${GMMDIR}/%s.out --datanumber %lf --indatafile data.out --outdatafile selected-data.out --fixonerigidbody --Box 100" % (c[0],c[1],c[2],c[3],c[0],c[1],c[2],c[3],c[0],c[1],c[2],c[3],c[0],c[1],c[2],c[3],n)
+                print "${SCRIPTDIR}/generate_DATA.py --pdbs ${PDBDIR}/%s.pdb ${PDBDIR}/%s.pdb ${PDBDIR}/%s.pdb ${PDBDIR}/%s.pdb --names %s %s %s %s --ntrials 50 --R0 49.0 --GMM ${GMMDIR}/%s.out ${GMMDIR}/%s.out ${GMMDIR}/%s.out ${GMMDIR}/%s.out --Ida 6.0 --Kda 16.0 --Sigma0 %lf --sensitivity 0.0001" % (c[0],c[1],c[2],c[3],c[0],c[1],c[2],c[3],c[0],c[1],c[2],c[3],s)
+                print "${SCRIPTDIR}/sample.py --pdbs ${PDBDIR}/%s.pdb ${PDBDIR}/%s.pdb ${PDBDIR}/%s.pdb ${PDBDIR}/%s.pdb --names %s %s %s %s --refpdbs ${PDBDIR}/%s.pdb ${PDBDIR}/%s.pdb ${PDBDIR}/%s.pdb ${PDBDIR}/%s.pdb --GMM ${GMMDIR}/%s.out ${GMMDIR}/%s.out ${GMMDIR}/%s.out ${GMMDIR}/%s.out --datanumber %lf --indatafile data.out --outdatafile selected-data.out --fixonerigidbody --Box 100" % (c[0],c[1],c[2],c[3],c[0],c[1],c[2],c[3],c[0],c[1],c[2],c[3],c[0],c[1],c[2],c[3],n)
