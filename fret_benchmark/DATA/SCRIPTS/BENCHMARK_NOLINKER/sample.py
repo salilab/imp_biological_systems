@@ -7,24 +7,26 @@ import IMP.container
 import IMP.isd
 import math
 import random
-import argparse                                                                  
+import optparse                                                                  
                                                                                  
-parser = argparse.ArgumentParser(description='Gaussian Mixture Model of a GFP fluorophore density around a protein')
-parser.add_argument('--pdbs',       dest="pdbs",         nargs="+", help="Pdb files")
-parser.add_argument('--refpdbs',    dest="refpdbs",      nargs="+", help="Reference Pdb files")
-parser.add_argument('--names',      dest="names",        nargs="+", help="Name of the proteins")
-parser.add_argument('--pbl',        dest="pbl",          help="Photobleaching probability", default="1.0")
-parser.add_argument('--R0',         dest="R0",           help="R0 value", default="49.0")
-parser.add_argument('--Ida',        dest="Ida",          help="Ida value",    default="6.0")
-parser.add_argument('--errIda',     dest="errIda",       help="Error on Ida", default="2.0")       
-parser.add_argument('--norandom',   dest="norandom",action="store_true", default=False, help="No random initial conformation. Default False.")
-parser.add_argument('--datanumber', dest="datanumber",   help="Fraction of total data.")
-parser.add_argument('--indatafile', dest="indatafile",   help="Input data filename.")
-parser.add_argument('--outdatafile', dest="outdatafile", help="Output data filename after random data selection.")
-parser.add_argument('--fixonerigidbody', dest="fixonerigidbody",action="store_true", default=False, help="Fix one of the rigid bodies. Default False.")
-parser.add_argument('--Box',        dest="Box",          help="Box size",    default="100.0")
+parser = optparse.OptionParser(description='Gaussian Mixture Model of a GFP fluorophore density around a protein')
+parser.add_option('--pdb',       dest="pdbs", action="append", default=[], help="Pdb files")
+parser.add_option('--refpdb',    dest="refpdbs", action="append", default=[], help="Reference Pdb files")
+parser.add_option('--name',      dest="names", action="append", default=[], help="Name of the proteins")
+parser.add_option('--pbl',        dest="pbl",          help="Photobleaching probability", default="1.0")
+parser.add_option('--R0',         dest="R0",           help="R0 value", default="49.0")
+parser.add_option('--Ida',        dest="Ida",          help="Ida value",    default="6.0")
+parser.add_option('--errIda',     dest="errIda",       help="Error on Ida", default="2.0")       
+parser.add_option('--norandom',   dest="norandom",action="store_true", default=False, help="No random initial conformation. Default False.")
+parser.add_option('--datanumber', dest="datanumber",   help="Fraction of total data.")
+parser.add_option('--indatafile', dest="indatafile",   help="Input data filename.")
+parser.add_option('--outdatafile', dest="outdatafile", help="Output data filename after random data selection.")
+parser.add_option('--fixonerigidbody', dest="fixonerigidbody",action="store_true", default=False, help="Fix one of the rigid bodies. Default False.")
+parser.add_option('--Box',        dest="Box",          help="Box size",    default="100.0")
 
-result=parser.parse_args()
+result,args=parser.parse_args()
+if len(args) != 0:
+    parser.error("wrong number of arguments")
 
 # check stuff
 if(len(result.pdbs)!=len(result.names)):

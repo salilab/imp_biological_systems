@@ -7,23 +7,25 @@ import IMP.container
 import IMP.isd
 import math
 import random
-import argparse                                                                  
+import optparse                                                                  
 import difflib                                                                   
                                                                                  
-parser = argparse.ArgumentParser(description='Generate FRET data')
-parser.add_argument('--pdbs',       dest="pdbs",         nargs="+", help="Pdb files")
-parser.add_argument('--names',      dest="names",        nargs="+", help="Name of the proteins")
-parser.add_argument('--datafile',   dest="datafile",     help="Name of output file", default="data.out") 
-parser.add_argument('--ntrials',    dest="ntrials",      help="Number of trials")        
-parser.add_argument('--GMM',        dest='GMMdatafiles', nargs="+", help="Input GMM data files")
-parser.add_argument('--pbl',        dest="pbl",          help="Photobleaching probability", default="1.0")
-parser.add_argument('--Ida',        dest="Ida",          help="Ida value", default="6.0")
-parser.add_argument('--Kda',        dest="Kda",          help="kda value")
-parser.add_argument('--Sigma0',     dest="Sigma0",       help="Sigma0 value")
-parser.add_argument('--R0',         dest="R0",           help="R0 value", default="49.0")
-parser.add_argument('--sensitivity',dest="sens",         help="Sensitivity")            
+parser = optparse.OptionParser(description='Generate FRET data')
+parser.add_option('--pdb',       dest="pdbs", action="append", default=[], help="Pdb files")
+parser.add_option('--name',      dest="names", action="append", default=[], help="Name of the proteins")
+parser.add_option('--datafile',   dest="datafile",     help="Name of output file", default="data.out") 
+parser.add_option('--ntrials',    dest="ntrials",      help="Number of trials")        
+parser.add_option('--GMM',        dest='GMMdatafiles', action="append", default=[], help="Input GMM data files")
+parser.add_option('--pbl',        dest="pbl",          help="Photobleaching probability", default="1.0")
+parser.add_option('--Ida',        dest="Ida",          help="Ida value", default="6.0")
+parser.add_option('--Kda',        dest="Kda",          help="kda value")
+parser.add_option('--Sigma0',     dest="Sigma0",       help="Sigma0 value")
+parser.add_option('--R0',         dest="R0",           help="R0 value", default="49.0")
+parser.add_option('--sensitivity',dest="sens",         help="Sensitivity")            
 
-result=parser.parse_args()
+result,args=parser.parse_args()
+if len(args) != 0:
+    parser.error("wrong number of arguments")
 
 # check stuff
 if(len(result.pdbs)!=len(result.names)):

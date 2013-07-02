@@ -17,8 +17,8 @@ for c in complexes3:
     for s in sigma0:
         for n in ndata:
             for i in range(0,ntrials):
-                print "${SCRIPTDIR}/generate_DATA.py --pdbs ${PDBDIR}/%s.pdb ${PDBDIR}/%s.pdb ${PDBDIR}/%s.pdb --names %s %s %s --ntrials 50 --R0 49.0 --Ida 6.0 --Kda 7.5 --Sigma0 %lf --sensitivity 0.0001" % (c[0],c[1],c[2],c[0],c[1],c[2],s)
-                print "${SCRIPTDIR}/sample.py --pdbs ${PDBDIR}/%s.pdb ${PDBDIR}/%s.pdb ${PDBDIR}/%s.pdb --names %s %s %s --refpdbs ${PDBDIR}/%s.pdb ${PDBDIR}/%s.pdb ${PDBDIR}/%s.pdb --R0 49.0 --datanumber %lf --indatafile data.out --outdatafile selected-data.out --fixonerigidbody --Box 100" % (c[0],c[1],c[2],c[0],c[1],c[2],c[0],c[1],c[2],n)
+                print "${SCRIPTDIR}/generate_DATA.py --pdb ${PDBDIR}/%s.pdb --pdb ${PDBDIR}/%s.pdb --pdb ${PDBDIR}/%s.pdb --name %s --name %s --name %s --ntrials 50 --R0 49.0 --Ida 6.0 --Kda 7.5 --Sigma0 %lf --sensitivity 0.0001" % (c[0],c[1],c[2],c[0],c[1],c[2],s)
+                print "${SCRIPTDIR}/sample.py --pdb ${PDBDIR}/%s.pdb --pdb ${PDBDIR}/%s.pdb --pdb ${PDBDIR}/%s.pdb --name %s --name %s --name %s --refpdb ${PDBDIR}/%s.pdb --refpdb ${PDBDIR}/%s.pdb --refpdb ${PDBDIR}/%s.pdb --R0 49.0 --datanumber %lf --indatafile data.out --outdatafile selected-data.out --fixonerigidbody --Box 100" % (c[0],c[1],c[2],c[0],c[1],c[2],c[0],c[1],c[2],n)
 
 # read pdbs from file
 complexes4=[]
@@ -31,5 +31,5 @@ for c in complexes4:
     for s in sigma0:
         for n in ndata:
             for i in range(0,ntrials):
-                print "${SCRIPTDIR}/generate_DATA.py --pdbs ${PDBDIR}/%s.pdb ${PDBDIR}/%s.pdb ${PDBDIR}/%s.pdb ${PDBDIR}/%s.pdb --names %s %s %s %s --ntrials 50 --R0 49.0 --Ida 6.0 --Kda 7.5 --Sigma0 %lf --sensitivity 0.0001" % (c[0],c[1],c[2],c[3],c[0],c[1],c[2],c[3],s)
-                print "${SCRIPTDIR}/sample.py --pdbs ${PDBDIR}/%s.pdb ${PDBDIR}/%s.pdb ${PDBDIR}/%s.pdb ${PDBDIR}/%s.pdb --names %s %s %s %s --refpdbs ${PDBDIR}/%s.pdb ${PDBDIR}/%s.pdb ${PDBDIR}/%s.pdb ${PDBDIR}/%s.pdb --R0 49.0 --datanumber %lf --indatafile data.out --outdatafile selected-data.out --fixonerigidbody --Box 100" % (c[0],c[1],c[2],c[3],c[0],c[1],c[2],c[3],c[0],c[1],c[2],c[3],n)
+                print "${SCRIPTDIR}/generate_DATA.py --pdb ${PDBDIR}/%s.pdb --pdb ${PDBDIR}/%s.pdb --pdb ${PDBDIR}/%s.pdb --pdb ${PDBDIR}/%s.pdb --name %s --name %s --name %s --name %s --ntrials 50 --R0 49.0 --Ida 6.0 --Kda 7.5 --Sigma0 %lf --sensitivity 0.0001" % (c[0],c[1],c[2],c[3],c[0],c[1],c[2],c[3],s)
+                print "${SCRIPTDIR}/sample.py --pdb ${PDBDIR}/%s.pdb --pdb ${PDBDIR}/%s.pdb --pdb ${PDBDIR}/%s.pdb --pdb ${PDBDIR}/%s.pdb --name %s --name %s --name %s --name %s --refpdb ${PDBDIR}/%s.pdb --refpdb ${PDBDIR}/%s.pdb --refpdb ${PDBDIR}/%s.pdb --refpdb ${PDBDIR}/%s.pdb --R0 49.0 --datanumber %lf --indatafile data.out --outdatafile selected-data.out --fixonerigidbody --Box 100" % (c[0],c[1],c[2],c[3],c[0],c[1],c[2],c[3],c[0],c[1],c[2],c[3],n)
