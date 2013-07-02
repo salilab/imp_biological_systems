@@ -1,10 +1,9 @@
 #!/bin/bash
 
-mkdir best_pdb
+mkdir -p best_pdb
+rm -f best_pdb/*.pdb
 
-rm best_pdb/*.pdb
-
-bin/process_output.py -f output/models_stats.out --soft -s Nframe Total_Score xlms_Score em_all_0 Domain_Linking_0 Excluded_Volume_0 Excluded_Volume_Symm_0 Template_Restraint_Inter Template_Restraint_Intra | sort -r -n -k 3 | tail -101 > best_pdb/scores.dat
+bin/process_output.py -f output/models_stats.out --soft -s Nframe -s Total_Score -s xlms_Score -s em_all_0 -s Domain_Linking_0 -s Excluded_Volume_0 -s Excluded_Volume_Symm_0 -s Template_Restraint_Inter -s Template_Restraint_Intra | sort -r -n -k 3 | tail -101 > best_pdb/scores.dat
 frames=`cat best_pdb/scores.dat | grep -v '#' | awk '{print $2}'`
 
 for i in $frames ;
@@ -15,13 +14,13 @@ awk 'BEGIN{nf=0};($1=="MODEL"){nf=nf+1};($1!="MODEL"){if(nf=='"$i"'){print $0}}'
 cat best_pdb/$i.A.pdb best_pdb/$i.B.pdb | grep -v "ENDMDL" > best_pdb/$i.pdb
 done
 
-mkdir clustering
-rm best_pdb/*.?.pdb
-rm clustering/clus*.pdb
-rm clustering/clus*.score.dat
-rm clustering/cluster.dat
-rm clustering/coor.xyz
-rm clustering/scores.dat
+mkdir -p clustering
+rm -f best_pdb/*.?.pdb
+rm -f clustering/clus*.pdb
+rm -f clustering/clus*.score.dat
+rm -f clustering/cluster.dat
+rm -f clustering/coor.xyz
+rm -f clustering/scores.dat
 
 onepdb=`ls best_pdb/*.pdb | awk '(NR==1){print }'`
 
@@ -46,8 +45,8 @@ echo clustering/ccenter.dat >> clustering/clus.in
 
 bin/cluster.x < clustering/clus.in > clustering/clus.out
 
-rm clustering/xyz.tmp
-rm clustering/clus.*.score.dat
+rm -f clustering/xyz.tmp
+rm -f clustering/clus.*.score.dat
 
 ((k=0))
 for cmember in `cat clustering/cluster.dat | grep -v '#' | awk '{print $2}'`
