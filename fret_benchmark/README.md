@@ -41,10 +41,10 @@ The benchmark should be run with IMP git version develop-c47408c.
 
 3) ANALYSIS. From the `ROOT` directory, do:
 
-   - `python DATA/SCRIPTS/ANALYSIS/do_analysis.py             RESULTS_LINKER    linker.dat`    
-   - `python DATA/SCRIPTS/ANALYSIS/do_analysis.py             RESULTS_NOLINKER  nolinker.dat`
-   - `python DATA/SCRIPTS/ANALYSIS/do_analysis_per_complex.py RESULTS_LINKER    linker_per_complex.dat`
-   - `python DATA/SCRIPTS/ANALYSIS/do_analysis_per_complex.py RESULTS_NOLINKER  nolinker_per_complex.dat`
+   - `DATA/SCRIPTS/ANALYSIS/do_analysis.py             RESULTS_LINKER    linker.dat`    
+   - `DATA/SCRIPTS/ANALYSIS/do_analysis.py             RESULTS_NOLINKER  nolinker.dat`
+   - `DATA/SCRIPTS/ANALYSIS/do_analysis_per_complex.py RESULTS_LINKER    linker_per_complex.dat`
+   - `DATA/SCRIPTS/ANALYSIS/do_analysis_per_complex.py RESULTS_NOLINKER  nolinker_per_complex.dat`
 
    Statistics will be written to the `.dat` files, which should be compared to the results in `DATA/REFERENCE_RESULTS` and to those
    published in Bonomi et al. "Protein complex structures from Bayesian modeling of in vivo FRET data", as follows.
