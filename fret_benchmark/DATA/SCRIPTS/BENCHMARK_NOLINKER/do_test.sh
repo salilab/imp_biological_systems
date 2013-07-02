@@ -1,12 +1,10 @@
 #!/bin/sh
 
-# EDIT HERE
 # IMP location 
 export IMP=/netapp/sali/mbonomi/build/IMP-git/imp-fast/setup_environment.sh
 # Root directory
-export ROOT=/netapp/sali/mbonomi/working/FRET_BENCHMARK/
+export ROOT=`cd ../../../ && pwd`
 
-## DO NOT CHANGE BELOW
 # Directory where tests are executed and results are stored
 export RESULTDIR=${ROOT}/RESULTS_NOLINKER
 # Data directory (with useful stuff)
