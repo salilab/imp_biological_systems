@@ -1,19 +1,32 @@
-#! /usr/bin/env python
-import argparse
+#!/usr/bin/env python
+
+import optparse
 import difflib
 
-parser = argparse.ArgumentParser(description='Process output data file saved as dictionaries. It has two modality: print selected fields for all lines or print a particular line where a filed has a given value. Example of usage: process_output.py --soft -s To E S -f log.3.native-2-no-red. process_output.py --soft --search_field EV0 --search_value 5.67750116023 -f log.3.native-2-no-red')
-parser.add_argument('-f', action="store", dest="filename", help="file name to process" )
-parser.add_argument('-s', dest="fields", nargs="+", help="Specify all fields to be printed. Multiple flags will append a list of fields to be printed" )
-parser.add_argument('-t', dest="single_column_field", help="Specify a single column field to be printed. It will be printed as a column. If the field name is not complete, it will print all fields whose name contain the queried string." )
-parser.add_argument('-p', action="store_true", dest="print_fields", default=False, help="print the fields contained in the file")
-parser.add_argument('-n', action="store", dest="print_raw_number", help="print the selected raw" )
-parser.add_argument('--soft', action="store_true", dest="soft_match", default=False, help="Soft match. Closest matching field will be printed, e.g. S will give Step_Number, En will give energy, etc. ")
-parser.add_argument('--search_field', dest="search_field", help="Search a line from the file. Specify the field to be searched for. ")
-parser.add_argument('--search_value', dest="search_value", help="Search a line from the file. Specify the value to be searched for. ")
+parser = optparse.OptionParser(usage="""
+%prog [options]
+
+Process output data file saved as dictionaries. It has two modes:
+1. Print selected fields for all lines
+2. Print a particular line where a field has a given value.
+
+Example of usage:
+process_output.py --soft -s To -s E -s S -f log.3.native-2-no-red
+process_output.py --soft --search_field EV0 --search_value 5.67750116023 -f log.3.native-2-no-red
+""")
+parser.add_option('-f', action="store", dest="filename", help="file name to process" )
+parser.add_option('-s', dest="fields", default=[], action="append", help="Specify all fields to be printed. Multiple flags will append a list of fields to be printed" )
+parser.add_option('-t', dest="single_column_field", help="Specify a single column field to be printed. It will be printed as a column. If the field name is not complete, it will print all fields whose name contain the queried string." )
+parser.add_option('-p', action="store_true", dest="print_fields", default=False, help="print the fields contained in the file")
+parser.add_option('-n', action="store", dest="print_raw_number", help="print the selected raw" )
+parser.add_option('--soft', action="store_true", dest="soft_match", default=False, help="Soft match. Closest matching field will be printed, e.g. S will give Step_Number, En will give energy, etc. ")
+parser.add_option('--search_field', dest="search_field", help="Search a line from the file. Specify the field to be searched for. ")
+parser.add_option('--search_value', dest="search_value", help="Search a line from the file. Specify the value to be searched for. ")
 
 
-result=parser.parse_args()
+result, args=parser.parse_args()
+if len(args) != 0:
+    parser.error("wrong number of arguments")
 
 #open the file
 if result.filename!=None:
