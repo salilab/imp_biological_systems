@@ -1,3 +1,5 @@
+#!/bin/sh
+
 # EDIT HERE
 # IMP location 
 export IMP=/netapp/sali/mbonomi/build/IMP-git/imp-fast/setup_environment.sh

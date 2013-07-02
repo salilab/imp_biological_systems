@@ -30,15 +30,15 @@ The benchmark should be run with IMP git version develop-c47408c.
    - To run a specific test, first open `do_test.sh` and set the `IMP` and `ROOT` directories.
      Please, do not change the name of the other directories. Then:
 
-      `bash do_test.sh ID`
+      `./do_test.sh ID`
 
      where `ID` is an integer from 1 to 1280.
 
    - To run all tests, just use a bash loop:
 
-      `for((ID=1;ID<=1280;ID++)); do bash do_test.sh $ID; done`
+      `for((ID=1;ID<=1280;ID++)); do ./do_test.sh $ID; done`
 
-   - To run all tests on the QB3 cluster, first open `job.sh` and set the `IMP` and `ROOT` directories, as well as
+   - To run all tests on an SGE cluster, first open `job.sh` and set the `IMP` and `ROOT` directories, as well as
      the name of the directories where standard output and error will be written.
      Please, do not change the name of the other directories. Then:
 
