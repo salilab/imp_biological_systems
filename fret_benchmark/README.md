@@ -11,9 +11,9 @@ The benchmark should be run with IMP git version develop-c47408c.
   - `PDBs`: Pdb with complex structure, one per chain
   - `REFERENCE_RESULTS`: reference results of benchmark
   - `SCRIPTS`: scripts to run and analyze the benchmark
-    - `ANALYSIS`: scripts to analyze the results
-    - `BENCHMARK_LINKER`: scripts to run the benchmark with model for linker flexibility
-    - `BENCHMARK_NOLINKER`: scripts to run the benchmark without model for linker flexibility
+     - `ANALYSIS`: scripts to analyze the results
+     - `BENCHMARK_LINKER`: scripts to run the benchmark with model for linker flexibility
+     - `BENCHMARK_NOLINKER`: scripts to run the benchmark without model for linker flexibility
       
 - `RESULTS_LINKER`   : directory where the results of benchmark with model for linker flexibility will be stored
 - `RESULTS_NOLINKER` : directory where the results of benchmark without model for linker flexibility will be stored
