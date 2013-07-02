@@ -1,7 +1,5 @@
 #!/bin/sh
 
-# IMP location 
-export IMP=/netapp/sali/mbonomi/build/IMP-git/imp-fast/setup_environment.sh
 # Root directory
 export ROOT=`cd ../../../ && pwd`
 
@@ -30,7 +28,7 @@ sed -n ${ID}p SAMPLE_COMMAND_LIST  >> ${RESULTDIR}/testdir${ID}/go.sh
 cd ${RESULTDIR}/testdir${ID}
 
 # run 
-IMMPY=$IMP SCRIPTDIR=$SCRIPTDIR PDBDIR=$PDBDIR GMMDIR=$GMMDIR bash go.sh
+SCRIPTDIR=$SCRIPTDIR PDBDIR=$PDBDIR GMMDIR=$GMMDIR bash go.sh
 
 # go back
 cd $SCRIPTDIR
