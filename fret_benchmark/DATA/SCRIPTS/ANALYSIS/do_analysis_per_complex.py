@@ -77,6 +77,8 @@ for nunits in [3,4]:
   for sigma in [0.001,0.01]:
    for ndata in [0.5,1.0]:
     id=(pdb,nunits,sigma,ndata)
+    if id not in ave_drms:
+        continue
     log.write("%6s %4d %6.4lf %2.1f   " % (id[0],id[1],id[2],id[3]))
     log.write("dRMS %6.3lf "        % (ave_drms[id]/ntests[id]))
     log.write("(%6.3lf )  "         % (math.sqrt(ave2_drms[id]/ntests[id]-(ave_drms[id]/ntests[id])**2)/math.sqrt(ntests[id])))
