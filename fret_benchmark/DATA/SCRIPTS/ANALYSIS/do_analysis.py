@@ -9,7 +9,7 @@ import os
 dir=sys.argv[1]
 
 # list of sub-directories with test
-test_dirs=os.listdir(dir)
+test_dirs = [x for x in os.listdir(dir) if x.startswith('testdir')]
 
 # initialize dictionaries for stats
 ave_drms={};     ave2_drms={}
