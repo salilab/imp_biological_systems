@@ -42,6 +42,7 @@ class Tests(unittest.TestCase):
                         % x for x in (1,2,3)]
 
         env = modeller.environ()
+        n_cluster = 0
         for cluster, exp_cluster in zip(clusters, exp_clusters):
             mc = modeller.model(env, file=cluster)
             s = modeller.selection(mc)
@@ -50,7 +51,11 @@ class Tests(unittest.TestCase):
             a.append_model(mc, align_codes='clus')
             a.append_model(me, align_codes='exp_clus')
             r = s.superpose(me, a)
-            self.assert_(r.rms < 7.0)
+            self.assert_(r.rms < 16.5,
+                         "RMSD between cluster %d and expected cluster (%.2f) "
+                         "is greater than cutoff (%.2f)" \
+                         % (n_cluster, r.rms, 16.5))
+            n_cluster += 1
 
     def test_refinement(self):
         """Test the refinement script"""
