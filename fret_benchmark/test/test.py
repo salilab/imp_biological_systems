@@ -1,6 +1,7 @@
 #!/usr/bin/env python
 
 import unittest
+import math
 import collections
 import sys
 import os
@@ -17,10 +18,9 @@ def get_data(fname):
     line = open(fname).readline()
     data = {}
     for m in r.finditer(line):
-        # Note: not clear if this really is the stddev; from the math it
-        # looks like this is actually stddev/sqrt(ntests)
+        # Note: convert standard error to stddev by multiplying by sqrt(ntests)
         data[m.group(1)] = Data(mean=float(m.group(2)),
-                                stddev=float(m.group(3)))
+                                stddev=float(m.group(3) * math.sqrt(20)))
     return data
 
 class Tests(unittest.TestCase):
@@ -52,7 +52,7 @@ class Tests(unittest.TestCase):
         ref_data = get_data('%s/%s_per_complex.dat' % (ref, testtype))
         for key in ref_data.keys():
             self.assertNearMean(key, data[key].mean, ref_data[key].mean,
-                                ref_data[key].stddev, 12)
+                                ref_data[key].stddev, 3)
 
     def assertNearMean(self, key, mean, ref_mean, ref_stddev, mult):
         self.assert_(abs(mean - ref_mean) < ref_stddev * mult,
