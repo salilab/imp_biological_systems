@@ -79,16 +79,30 @@ for nunits in [3,4]:
     id=(pdb,nunits,sigma,ndata)
     if id not in ave_drms:
         continue
+    # - pdb id of the complex
+    # - number of subunits
+    # - level of noise (0.001 is low, 0.01 is high)
+    # - percentage of data used (0.5 or 1.0)
     log.write("%6s %4d %6.4lf %2.1f   " % (id[0],id[1],id[2],id[3]))
+    # - average distance RMSD from the native complex (standard error
+    #   in parentheses)
     log.write("dRMS %6.3lf "        % (ave_drms[id]/ntests[id]))
     log.write("(%6.3lf )  "         % (math.sqrt(ave2_drms[id]/ntests[id]-(ave_drms[id]/ntests[id])**2)/math.sqrt(ntests[id])))
+    # - distance RMSD from the native complex calculated only on the terminal
+    #   residues (where FRET is calculated) (standard error in parentheses)
     log.write("dRMD_ter %6.3lf "    % (ave_drms_ter[id]/ntests[id]))
     log.write("(%6.3lf )  "         % (math.sqrt(ave2_drms_ter[id]/ntests[id]-(ave_drms_ter[id]/ntests[id])**2)/math.sqrt(ntests[id]))) 
+    # - the average positional distance
     log.write("pdist  %6.3lf "      % (ave_pd[id]/ntests[id]))
     log.write("(%6.3lf )  "         % (math.sqrt(ave2_pd[id]/ntests[id]-(ave_pd[id]/ntests[id])**2)/math.sqrt(ntests[id])))
+    # - the average positional angle
     log.write("pangle %8.3lf "      % (ave_pa[id]/ntests[id]))
     log.write("(%6.3lf )  "         % (math.sqrt(ave2_pa[id]/ntests[id]-(ave_pa[id]/ntests[id])**2)/math.sqrt(ntests[id])))
+    # - the average deviation from the reference parameter Kda
     log.write("kda %6.3lf  "        % (math.sqrt(ave_kda[id]/ntests[id])))
+    # - the average deviation from the reference parameter Ida
     log.write("Ida %6.3lf  "        % (math.sqrt(ave_Ida[id]/ntests[id])))
+    # - the average deviation from the reference parameter sigma0
     log.write("sigma0 %12.6lf  "    % (math.sqrt(ave_sigma0[id]/ntests[id])))
+    # - the number of tests
     log.write("ntests %4d\n"        % (ntests[id]))
