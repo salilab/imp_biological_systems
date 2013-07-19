@@ -50,11 +50,14 @@ class Tests(unittest.TestCase):
             me = modeller.model(env, file=exp_cluster)
             a.append_model(mc, align_codes='clus')
             a.append_model(me, align_codes='exp_clus')
-            r = s.superpose(me, a)
-            self.assert_(r.rms < 16.5,
+            # We only care about the global (non-cutoff) RMSD, so use a large
+            # cutoff so that refine_local doesn't increase the number of
+            # equivalent positions at the expense of worsening the RMSD
+            r = s.superpose(me, a, rms_cutoff=999.)
+            self.assert_(r.rms < 15.0,
                          "RMSD between cluster %d and expected cluster (%.2f) "
                          "is greater than cutoff (%.2f)" \
-                         % (n_cluster, r.rms, 16.5))
+                         % (n_cluster, r.rms, 15.0))
             n_cluster += 1
 
     def test_refinement(self):
