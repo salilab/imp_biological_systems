@@ -35,30 +35,46 @@ class Tests(unittest.TestCase):
         subprocess.check_call(['bin/get_frames.sh'],
                               cwd='integrative_modeling')
 
-        # Make sure that the top three clusters are close to "known good"
-        clusters = ['integrative_modeling/clustering/clus.%d.pdb' \
-                    % x for x in (1,2,3)]
-        exp_clusters = ['model_refinement/cluster%d/model.pdb' \
-                        % x for x in (1,2,3)]
+        # Make sure that the three "known good" clusters are reproduced
+        clusters = glob.glob('integrative_modeling/clustering/clus.*.pdb')
+        clusters = [x for x in clusters if '-' not in x]
+        exp_clusters = glob.glob('model_refinement/cluster*/model.pdb')
 
         env = modeller.environ()
         n_cluster = 0
-        for cluster, exp_cluster in zip(clusters, exp_clusters):
-            mc = modeller.model(env, file=cluster)
-            s = modeller.selection(mc)
-            a = modeller.alignment(env)
-            me = modeller.model(env, file=exp_cluster)
-            a.append_model(mc, align_codes='clus')
-            a.append_model(me, align_codes='exp_clus')
-            # We only care about the global (non-cutoff) RMSD, so use a large
-            # cutoff so that refine_local doesn't increase the number of
-            # equivalent positions at the expense of worsening the RMSD
-            r = s.superpose(me, a, rms_cutoff=999.)
-            self.assert_(r.rms < 15.0,
-                         "RMSD between cluster %d and expected cluster (%.2f) "
-                         "is greater than cutoff (%.2f)" \
-                         % (n_cluster, r.rms, 15.0))
-            n_cluster += 1
+        rms = []
+        cluster_match = [0] * len(clusters)
+        exp_cluster_match = [0] * len(exp_clusters)
+        # Get a matrix of RMSD between all clusters and the expected clusters
+        for ncluster, cluster in enumerate(clusters):
+            per_cluster = []
+            for nexp_cluster, exp_cluster in enumerate(exp_clusters):
+                mc = modeller.model(env, file=cluster)
+                s = modeller.selection(mc)
+                a = modeller.alignment(env)
+                me = modeller.model(env, file=exp_cluster)
+                a.append_model(mc, align_codes='clus')
+                a.append_model(me, align_codes='exp_clus')
+                # We only care about the global (non-cutoff) RMSD, so use a
+                # large cutoff so that refine_local doesn't increase the number
+                # of equivalent positions at the expense of worsening the RMSD
+                r = s.superpose(me, a, rms_cutoff=999.)
+                if r.rms < 15.0:
+                    cluster_match[ncluster] += 1
+                    exp_cluster_match[nexp_cluster] += 1
+                per_cluster.append(r.rms)
+            rms.append(per_cluster)
+        # Count the number of clusters which are close to an expected cluster
+        ncluster_match = len(cluster_match) - cluster_match.count(0)
+        # Count the number of expected clusters which are close to a cluster
+        nexp_cluster_match = len(exp_cluster_match) - exp_cluster_match.count(0)
+        # Make sure that each of the 3 expected clusters is close to one of
+        # the clusters we produced (but not all the *same* cluster)
+        self.assert_(ncluster_match >= 3 and nexp_cluster_match >= 3,
+                     "Could not find any match between the %d clusters found "
+                     "in this test and the 3 'known good' clusters (match "
+                     "defined as all-atom RMSD less than 15.0A). "
+                     "RMSD matrix: %s" % (len(clusters), str(rms)))
 
     def test_refinement(self):
         """Test the refinement script"""
