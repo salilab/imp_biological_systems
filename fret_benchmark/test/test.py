@@ -20,7 +20,7 @@ def get_data(fname):
     for m in r.finditer(line):
         # Note: convert standard error to stddev by multiplying by sqrt(ntests)
         data[m.group(1)] = Data(mean=float(m.group(2)),
-                                stddev=float(m.group(3) * math.sqrt(20)))
+                                stddev=float(m.group(3)) * math.sqrt(20))
     return data
 
 class Tests(unittest.TestCase):
