@@ -36,7 +36,8 @@ class Tests(unittest.TestCase):
         subprocess.check_call(['bin/get_frames.sh'],
                               cwd='integrative_modeling')
 
-        # Make sure that the three "known good" clusters are reproduced
+        # Make sure that at least two of the three "known good" clusters
+        # are reproduced
         clusters = glob.glob('integrative_modeling/clustering/clus.*.pdb')
         clusters = [x for x in clusters if '-' not in x]
         exp_clusters = glob.glob('model_refinement/cluster*/model.pdb')
@@ -69,11 +70,11 @@ class Tests(unittest.TestCase):
         ncluster_match = len(cluster_match) - cluster_match.count(0)
         # Count the number of expected clusters which are close to a cluster
         nexp_cluster_match = len(exp_cluster_match) - exp_cluster_match.count(0)
-        # Make sure that each of the 3 expected clusters is close to one of
-        # the clusters we produced (but not all the *same* cluster)
-        self.assert_(ncluster_match >= 3 and nexp_cluster_match >= 3,
+        # Make sure that at least 2 of the 3 expected clusters is close to one
+        # of the clusters we produced (but not all the *same* cluster)
+        self.assert_(ncluster_match >= 2 and nexp_cluster_match >= 2,
                      "Could not find any match between the %d clusters found "
-                     "in this test and the 3 'known good' clusters (match "
+                     "in this test and 2 of the 3 'known good' clusters (match "
                      "defined as all-atom RMSD less than 15.0A). "
                      "RMSD matrix: %s" % (len(clusters), str(rms)))
 
