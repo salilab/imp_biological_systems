@@ -13,7 +13,7 @@ All command here are given as if run from the \c biological_systems/rnapii direc
  - `data/emd_1283.mrc`: a mrc file of the assembly
 
  - `data/*.pdb`: pdb files of the subunits, derived from the yeast homologues.
- - 
+
 ## Generating the parameters file
 
 `../../tools/imppy.sh python ../../modules/multifit2/bin/generate_assembly_input.py -i rnapii.asmb.input -- rnapii data/rnapii.subunit.list.txt 30 data/emd_1283.mrc 20 2.5 0.2 60 60 60`
