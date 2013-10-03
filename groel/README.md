@@ -48,7 +48,7 @@ modify it under the terms of the GNU Lesser General Public
 License as published by the Free Software Foundation; either
 version 2 of the License, or (at your option) any later version.
 
-_Last known good IMP version_: [![build info](http://salilab.org/imp/systems/?sysstat=1)](http://salilab.org/imp/systems/)
+_Last known good IMP version_: [![build info](https://salilab.org/imp/systems/?sysstat=1)](http://salilab.org/imp/systems/)
 
 _Testable_: Yes.
 
