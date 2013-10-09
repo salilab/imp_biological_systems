@@ -48,10 +48,8 @@ The benchmark should be run with IMP git version develop-c47408c.
 
    Statistics will be written to the `.dat` files, which should be compared to the results in `DATA/REFERENCE_RESULTS` and to those
    published in Bonomi et al. "Protein complex structures from Bayesian modeling of in vivo FRET data", as follows.
-   - `linker.dat`             -> Table S1
-   - `nolinker.dat`           -> Table S2
-   - `linker_per_complex.dat` -> Table S3
-   - `linker_per_complex.dat` -> Table S4
+   - `linker.dat`             -> Table S2
+   - `nolinker.dat`           -> Table S3
 
 
 _Author(s)_: Max Bonomi
