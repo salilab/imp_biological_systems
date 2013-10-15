@@ -52,7 +52,7 @@ class Tests(unittest.TestCase):
         ref_data = get_data('%s/%s_per_complex.dat' % (ref, testtype))
         for key in ref_data.keys():
             self.assertNearMean(key, data[key].mean, ref_data[key].mean,
-                                ref_data[key].stddev, 3)
+                                ref_data[key].stddev, 5)
 
     def assertNearMean(self, key, mean, ref_mean, ref_stddev, mult):
         self.assert_(abs(mean - ref_mean) < ref_stddev * mult,
