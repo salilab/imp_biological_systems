@@ -2,7 +2,6 @@
 
 This directory contains all the scripts to run the benchmark of the FRETR
 Bayesian restraint, and the reference results.  
-The benchmark should be run with IMP git version develop-c47408c.
 
 ## Folder structure 
 
@@ -22,7 +21,7 @@ The benchmark should be run with IMP git version develop-c47408c.
 
 0) This is the `ROOT` directory.
 
-1) PRELIMINARY. Compile IMP git version develop-c47408c
+1) PRELIMINARY. Compile IMP (any recent version should work - see below for the last known good IMP version). IMP git version develop-c47408c was used for the publication.
 
 2) EXECUTION. Go to `DATA/SCRIPTS/BENCHMARK_LINKER` or `DATA/SCRIPTS/BENCHMARK_NOLINKER` where you will find
    the scripts to run the benchmark with or without using a model for linker flexibility, respectively. Then: 
