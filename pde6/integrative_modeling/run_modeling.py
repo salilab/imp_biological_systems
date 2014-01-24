@@ -40,7 +40,8 @@ class run_class():
         #####################################################
 
     def link_domains(self,prot, resrangelist, kappa):
-        rs = IMP.RestraintSet('linker')
+        m=prot.get_model()
+        rs = IMP.RestraintSet(m,'linker')
         for pair in resrangelist:
             try:
                 s0=IMP.atom.Selection(prot, chains=pair[2], residue_index=pair[0])
@@ -67,7 +68,8 @@ class run_class():
         #####################################################
 
     def add_excluded_volume(self,prot,kappa):
-        rs = IMP.RestraintSet('excluded_volume')
+        m=prot.get_model()
+        rs = IMP.RestraintSet(m,'excluded_volume')
         atoms=IMP.atom.get_by_type(prot, IMP.atom.ATOM_TYPE)
         for atom in atoms:
             restype=IMP.atom.Residue(IMP.atom.Atom(atom).get_parent()).get_residue_type()
@@ -84,7 +86,8 @@ class run_class():
         #####################################################
 
     def add_symmetry_excluded_volume(self,prot_ref,prot_symm_list,kappa):
-        rs = IMP.RestraintSet('symm_excluded_volume')
+        m=prot_ref.get_model()
+        rs = IMP.RestraintSet(m,'symm_excluded_volume')
         
         atoms_ref=IMP.atom.get_by_type(prot_ref, IMP.atom.ATOM_TYPE)
         ls_ref=IMP.container.ListSingletonContainer(self.m)
@@ -113,7 +116,8 @@ class run_class():
         #####################################################
 
     def add_external_barrier(self,rad,prot):
-        rs = IMP.RestraintSet('barrier')
+        m=prot.get_model()
+        rs = IMP.RestraintSet(m,'barrier')
         c3= IMP.algebra.Vector3D(0,0,0)
         ub3= IMP.core.HarmonicUpperBound(rad, 10.0)
         ss3= IMP.core.DistanceToSingletonScore(ub3, c3)
@@ -133,15 +137,21 @@ class run_class():
      of different chains from an external text file
      sintax: part_name_1 part_name_2 distance error
      example:     0 1 1.0 0.1"""
-     rs=IMP.RestraintSet('xlms')
+     m=prot1.get_model()
+     rs=IMP.RestraintSet(m,'xlms')
      self.pairs=[]
      
-     crosslinker="BS3" 
     
      #this is an harmonic potential with mean 12 and sigma=5, therefore
      #k=1/sigma^2
-     hf=IMP.core.TruncatedHarmonicBound(12.0,1.0/25.0,15.0,5)
-     dps=IMP.core.DistancePairScore(hf)
+     hf={}
+     
+     hf["BS3"]   =IMP.core.TruncatedHarmonicBound(12.0,1.0/5.0/5.0,15.0,5)
+     hf["SMSB"]  =IMP.core.TruncatedHarmonicBound(10.0,1.0/3.6/3.6,13.0,5)
+     hf["BSPEG5"]=IMP.core.TruncatedHarmonicBound(19.2,1.0/6.8/6.8,24.0,5)
+     hf["BSPEG9"]=IMP.core.TruncatedHarmonicBound(26.4,1.0/9.4/9.4,34.0,5)
+
+     
   
      index=0
 
@@ -226,7 +236,7 @@ class run_class():
         addedd_pairs_list.append((p1,p2,crosslinker))
 
         rs_name='restraint_'+str(index)
-
+        dps=IMP.core.DistancePairScore(hf[crosslinker])
         ln=IMP.core.PairRestraint(dps,IMP.ParticlePair(p1,p2))       
         ln.set_weight(0.5)                    
         rs.add_restraint(ln)        
@@ -282,7 +292,8 @@ class run_class():
         #####################################################
 
     def add_template_restraint(self,ps1,ps2,label):
-       rset=IMP.RestraintSet('template_restraint')   
+       m=ps1[0].get_model()
+       rset=IMP.RestraintSet(m,'template_restraint')   
        for p1 in  ps1:
            for p2 in ps2:
                #check that the two particles are not in the same rigid body
@@ -357,13 +368,14 @@ class run_class():
 
             p0=self.pairs[i][0]
             p1=self.pairs[i][1]
+            crosslinker=self.pairs[i][2]
             ln=self.pairs[i][9]
             resid1=self.pairs[i][6][0]
             chain1=self.pairs[i][6][1]
             resid2=self.pairs[i][7][0]
             chain2=self.pairs[i][7][1]
             
-            label=str(resid1)+":"+chain1+"_"+str(resid2)+":"+chain2
+            label=str(resid1)+":"+chain1+"_"+str(resid2)+":"+chain2+"_"+crosslinker
             output["xlms_"+label]=ln.evaluate(False)
 
 
@@ -687,7 +699,7 @@ class run_class():
            self.test_scores()          
            return
         else:
-           nstepmax=10001
+           nstepmax=30001
            nsteplowtemp=150
            nstephightemp=50
                   
