@@ -39,7 +39,7 @@ echo $nconf >> clustering/clus.in
 echo $ncoord >> clustering/clus.in
 echo 0 >> clustering/clus.in
 echo 5 >> clustering/clus.in
-echo 10.0 >> clustering/clus.in
+echo 15.0 >> clustering/clus.in
 echo clustering/cluster.dat >> clustering/clus.in
 echo clustering/ccenter.dat >> clustering/clus.in
 
