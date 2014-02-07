@@ -1,5 +1,6 @@
 #!/usr/bin/env python
 
+import sys
 from modeller import *
 from modeller.automodel import *
 
@@ -29,6 +30,8 @@ class MyModel(automodel):
         rsr.add(secondary_structure.alpha(self.residue_range('483:B', '490:B')))
 
         # cross links
+
+        # Chain A
         rsr.add(forms.gaussian(group=physical.xy_distance, feature=features.distance(at['CA:21:A'], at['CA:31:A']), mean=12.0, stdev=0.5))
         rsr.add(forms.gaussian(group=physical.xy_distance, feature=features.distance(at['CA:76:A'], at['CA:83:A']),  mean=12.0, stdev=0.5))
         rsr.add(forms.gaussian(group=physical.xy_distance, feature=features.distance(at['CA:76:A'], at['CA:84:A']),  mean=12.0, stdev=0.5))
@@ -38,7 +41,16 @@ class MyModel(automodel):
         rsr.add(forms.gaussian(group=physical.xy_distance, feature=features.distance(at['CA:677:A'], at['CA:683:A']),  mean=12.0, stdev=0.5))
         rsr.add(forms.gaussian(group=physical.xy_distance, feature=features.distance(at['CA:827:A'], at['CA:845:A']),  mean=12.0, stdev=0.5))
         rsr.add(forms.gaussian(group=physical.xy_distance, feature=features.distance(at['CA:786:A'], at['CA:807:A']),  mean=12.0, stdev=0.5))
+        # long range
+        rsr.add(forms.gaussian(group=physical.xy_distance, feature=features.distance(at['CA:284:A'], at['CA:394:A']),  mean=26.4, stdev=0.5))
+        rsr.add(forms.gaussian(group=physical.xy_distance, feature=features.distance(at['CA:393:A'], at['CA:620:A']),  mean=26.4, stdev=0.5))
+        rsr.add(forms.gaussian(group=physical.xy_distance, feature=features.distance(at['CA:534:A'], at['CA:579:A']),  mean=26.4, stdev=0.5))
+        rsr.add(forms.gaussian(group=physical.xy_distance, feature=features.distance(at['CA:613:A'], at['CA:677:A']),  mean=26.4, stdev=0.5))
+        rsr.add(forms.gaussian(group=physical.xy_distance, feature=features.distance(at['CA:247:A'], at['CA:326:A']),  mean=26.4, stdev=0.5))
+        rsr.add(forms.gaussian(group=physical.xy_distance, feature=features.distance(at['CA:613:A'], at['CA:765:A']),  mean=26.4, stdev=0.5))
 
+
+        # Chain B
         rsr.add(forms.gaussian(group=physical.xy_distance, feature=features.distance(at['CA:784:B'], at['CA:805:B']), mean=12.0, stdev=0.5))
         rsr.add(forms.gaussian(group=physical.xy_distance, feature=features.distance(at['CA:440:B'], at['CA:392:B']),  mean=12.0, stdev=0.5))
         rsr.add(forms.gaussian(group=physical.xy_distance, feature=features.distance(at['CA:490:B'], at['CA:532:B']),  mean=12.0, stdev=0.5))
@@ -49,26 +61,44 @@ class MyModel(automodel):
         rsr.add(forms.gaussian(group=physical.xy_distance, feature=features.distance(at['CA:763:B'], at['CA:817:B']),  mean=12.0, stdev=0.5))
         rsr.add(forms.gaussian(group=physical.xy_distance, feature=features.distance(at['CA:817:B'], at['CA:832:B']),  mean=12.0, stdev=0.5))
         rsr.add(forms.gaussian(group=physical.xy_distance, feature=features.distance(at['CA:817:B'], at['CA:826:B']),  mean=12.0, stdev=0.5))
-        rsr.add(forms.gaussian(group=physical.xy_distance, feature=features.distance(at['CA:817:B'], at['CA:839:B']),  mean=12.0, stdev=0.5))
+        rsr.add(forms.gaussian(group=physical.xy_distance, feature=features.distance(at['CA:817:B'], at['CA:839:B']),  mean=10.0, stdev=0.5))
         rsr.add(forms.gaussian(group=physical.xy_distance, feature=features.distance(at['CA:819:B'], at['CA:832:B']),  mean=12.0, stdev=0.5))
         rsr.add(forms.gaussian(group=physical.xy_distance, feature=features.distance(at['CA:826:B'], at['CA:833:B']),  mean=12.0, stdev=0.5))
-        rsr.add(forms.gaussian(group=physical.xy_distance, feature=features.distance(at['CA:832:B'], at['CA:839:B']),  mean=12.0, stdev=0.5))
+        rsr.add(forms.gaussian(group=physical.xy_distance, feature=features.distance(at['CA:832:B'], at['CA:839:B']),  mean=10.0, stdev=0.5))
+        # long range
+        rsr.add(forms.gaussian(group=physical.xy_distance, feature=features.distance(at['CA:391:B'], at['CA:618:B']),  mean=26.4, stdev=0.5))
+        rsr.add(forms.gaussian(group=physical.xy_distance, feature=features.distance(at['CA:611:B'], at['CA:675:B']),  mean=26.4, stdev=0.5))
+        rsr.add(forms.gaussian(group=physical.xy_distance, feature=features.distance(at['CA:487:B'], at['CA:532:B']),  mean=26.4, stdev=0.5))
+        rsr.add(forms.gaussian(group=physical.xy_distance, feature=features.distance(at['CA:490:B'], at['CA:579:B']),  mean=26.4, stdev=0.5))
+        rsr.add(forms.gaussian(group=physical.xy_distance, feature=features.distance(at['CA:490:B'], at['CA:577:B']),  mean=26.4, stdev=0.5))
+        rsr.add(forms.gaussian(group=physical.xy_distance, feature=features.distance(at['CA:532:B'], at['CA:693:B']),  mean=19.2, stdev=0.5))
+        rsr.add(forms.gaussian(group=physical.xy_distance, feature=features.distance(at['CA:687:B'], at['CA:805:B']),  mean=26.4, stdev=0.5))
 
+
+        # inter-chain
         rsr.add(forms.gaussian(group=physical.xy_distance, feature=features.distance(at['CA:21:A'], at['CA:26:B']),  mean=12.0, stdev=0.5))
-        rsr.add(forms.gaussian(group=physical.xy_distance, feature=features.distance(at['CA:21:A'], at['CA:44:B']),  mean=12.0, stdev=0.5))
+        rsr.add(forms.gaussian(group=physical.xy_distance, feature=features.distance(at['CA:21:A'], at['CA:44:B']),  mean=10.0, stdev=0.5))
         rsr.add(forms.gaussian(group=physical.xy_distance, feature=features.distance(at['CA:31:A'], at['CA:78:B']),  mean=12.0, stdev=0.5))
         rsr.add(forms.gaussian(group=physical.xy_distance, feature=features.distance(at['CA:31:A'], at['CA:26:B']),  mean=12.0, stdev=0.5))
         rsr.add(forms.gaussian(group=physical.xy_distance, feature=features.distance(at['CA:247:A'], at['CA:391:B']),  mean=12.0, stdev=0.5))
         rsr.add(forms.gaussian(group=physical.xy_distance, feature=features.distance(at['CA:447:A'], at['CA:440:B']),  mean=12.0, stdev=0.5))
         rsr.add(forms.gaussian(group=physical.xy_distance, feature=features.distance(at['CA:447:A'], at['CA:618:B']),  mean=12.0, stdev=0.5))
+        # long range
+        rsr.add(forms.gaussian(group=physical.xy_distance, feature=features.distance(at['CA:21:A'], at['CA:78:B']),  mean=19.2, stdev=0.5))
+        rsr.add(forms.gaussian(group=physical.xy_distance, feature=features.distance(at['CA:76:A'], at['CA:184:B']),  mean=26.4, stdev=0.5))
+        rsr.add(forms.gaussian(group=physical.xy_distance, feature=features.distance(at['CA:447:A'], at['CA:392:B']),  mean=26.4, stdev=0.5))
+        rsr.add(forms.gaussian(group=physical.xy_distance, feature=features.distance(at['CA:459:A'], at['CA:618:B']),  mean=26.4, stdev=0.5))
+        rsr.add(forms.gaussian(group=physical.xy_distance, feature=features.distance(at['CA:613:A'], at['CA:315:B']),  mean=26.4, stdev=0.5))
+        rsr.add(forms.gaussian(group=physical.xy_distance, feature=features.distance(at['CA:393:A'], at['CA:245:B']),  mean=26.4, stdev=0.5))
+        rsr.add(forms.gaussian(group=physical.xy_distance, feature=features.distance(at['CA:677:A'], at['CA:315:B']),  mean=26.4, stdev=0.5))
 
-        # Constrain the A and B chains to be identical (but only restrain
-        # the C-alpha atoms, to reduce the number of interatomic distances
-        # that need to be calculated):
-        s1 = selection(a.residue_range('12:A', '183:A')).only_atom_types('CA') | selection(a.residue_range('225:A', '481:A')).only_atom_types('CA') | selection(a.residue_range('508:A', '624:A')).only_atom_types('CA') | selection(a.residue_range('629:A', '802:A')).only_atom_types('CA')
-        s2 = selection(a.residue_range('10:B', '181:B')).only_atom_types('CA') | selection(a.residue_range('223:B', '479:B')).only_atom_types('CA') | selection(a.residue_range('506:B', '622:B')).only_atom_types('CA') | selection(a.residue_range('627:B', '800:B')).only_atom_types('CA')
 
+        # Symmetry: constrain the A and B chains to be identical (but only restrain
+        # the C-alpha atoms, since the sequence is not identical):
+        s1 = selection(a.residue_range('12:A', '183:A')).only_atom_types('CA') | selection(a.residue_range('225:A', '481:A')).only_atom_types('CA') | selection(a.residue_range('508:A', '624:A')).only_atom_types('CA') | selection(a.residue_range('629:A', '812:A')).only_atom_types('CA')
+        s2 = selection(a.residue_range('10:B', '181:B')).only_atom_types('CA') | selection(a.residue_range('223:B', '479:B')).only_atom_types('CA') | selection(a.residue_range('506:B', '622:B')).only_atom_types('CA') | selection(a.residue_range('627:B', '810:B')).only_atom_types('CA')
         self.restraints.symmetry.append(symmetry(s1, s2, 1.0))
+
 #     def user_after_single_model(self):
 #         # Report on symmetry violations greater than 1A after building
 #         # each model:
@@ -82,8 +112,18 @@ class MyModel(automodel):
 env = environ()
 a = MyModel(env, alnfile='pde6-pde6.ali',
             knowns='model.pdb', sequence='pde6',
-            assess_methods=(assess.DOPE, assess.GA341))
+            assess_methods=(assess.DOPE))
+
+a.library_schedule = autosched.normal
+a.max_var_iterations = 500
+a.md_level = refine.slow
+
 #a.very_fast()                       # prepare for extremely fast optimization
 a.starting_model = 1
 a.ending_model = 5
+
+# If testing is requested, build just one model:
+if sys.argv[-1] == '--run_quick_test':
+    a.ending_model = 1
+
 a.make()
