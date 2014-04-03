@@ -352,7 +352,7 @@ R0.set_upper(R0_)
 R0.set_is_optimized(Ida.get_nuisance_key(),False)
 
 # create restraints
-fret_set=IMP.RestraintSet("Fret")
+fret_set=IMP.RestraintSet(m, "Fret")
 fret_dict={}
 for f in selected_fret_list:
     d=f[0][0]; a=f[0][1]; fexp=f[1]

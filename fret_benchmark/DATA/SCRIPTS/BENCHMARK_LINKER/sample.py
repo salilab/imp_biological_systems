@@ -377,7 +377,7 @@ s_grid=get_log_grid(1.0,100.0,100)
 data=IMP.isd.FretData(d_term,d_center,d_int,s_grid,R0_,26.0,70.0)
 
 # create restraints
-fret_set=IMP.RestraintSet("Fret")
+fret_set=IMP.RestraintSet(m, "Fret")
 fret_dict={}
 for f in selected_fret_list:
     d=f[0][0]; a=f[0][1]; fexp=f[1]
